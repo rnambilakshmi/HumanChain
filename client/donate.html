@@ -1,0 +1,399 @@
+`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>HumanChain</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link rel="shortcut icon" href="./images/help_logo.png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <!-- ElegantFonts CSS -->
+    <link rel="stylesheet" href="css/elegant-fonts.css">
+
+    <!-- themify-icons CSS -->
+    <link rel="stylesheet" href="css/themify-icons.css">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="css/swiper.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+
+
+</head>
+<body class="single-page donate-page">
+    <header class="site-header">
+        <div class="top-header-bar">
+            <div class="container">
+                <div class="row flex-wrap justify-content-center justify-content-lg-between align-items-lg-center">
+                    <div id="user_info" class="col-12 col-lg-8 d-none d-md-flex flex-wrap justify-content-center justify-content-lg-start mb-3 mb-lg-0">
+                        Loading Details...
+                    </div><!-- .col -->
+
+                    <div class="col-12 col-lg-4 d-flex flex-wrap justify-content-center justify-content-lg-end align-items-center">
+                        <div class="donate-btn">
+                            <a href="./index.html">Logout</a>
+                        </div><!-- .donate-btn -->
+                    </div><!-- .col -->
+                </div><!-- .row -->
+            </div><!-- .container -->
+        </div><!-- .top-header-bar -->
+
+        <div class="nav-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 d-flex flex-wrap justify-content-between align-items-center">
+                        <a class="d-block" href="index.html" rel="home" style="text-decoration: none;">
+                            <div style="display:inline-block;vertical-align:top;">
+                                <img src="./images/help_logo.png" alt="img"/>
+                            </div>
+                            <div style="display:inline-block;">
+                                <h3>HumanChain</h3>
+                            </div>
+                        </a>
+                        <nav class="site-navigation d-flex justify-content-end align-items-center">
+                            <ul id="nav_bar" class="d-flex flex-column flex-lg-row justify-content-lg-end align-content-center">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="services.html">Need Assistance?</a></li>
+                                <li><a href="volunteer.html">Volunteer</a></li>
+                                <li class="current-menu-item"><a href="donate.html">Donate</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </nav><!-- .site-navigation -->
+
+                        <div class="hamburger-menu d-lg-none">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div><!-- .hamburger-menu -->
+                    </div><!-- .col -->
+                </div><!-- .row -->
+            </div><!-- .container -->
+        </div><!-- .nav-bar -->
+    </header><!-- .site-header -->
+
+    <div class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1>Donate for a Cause</h1>
+                </div><!-- .col -->
+            </div><!-- .row -->
+        </div><!-- .container -->
+    </div><!-- .page-header -->
+
+
+    <div class="featured-cause">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+
+                </div><!-- .col -->
+            </div><!-- .row -->
+
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="cause-wrap d-flex flex-wrap justify-content-between">
+                        <figure class="m-0">
+                            <img src="images/cause-1.jpeg" alt="">
+                        </figure>
+
+                        <div class="cause-content-wrap">
+                            <header class="entry-header d-flex flex-wrap align-items-center">
+                                <h3 id="cause_1_descr" class="entry-title w-100 m-0"><a href="#" style="text-decoration:none">Welfare Aid</a></h3>
+
+                                <div class="posted-date">
+                                    <a href="#" style="text-decoration:none">Mar 25</a>
+                                </div><!-- .posted-date -->
+
+                                <div class="cats-links" >
+                                    <div style="display:inline-block;">
+                                        <a href="#" style="text-decoration:none">Maharashtra Govt.</a>
+                                    </div>
+                                    <div style="display:inline-block;">
+                                        <a id="creator" href="#" data-toggle="tooltip" title="Ethereum Address: "><i class="fa fa-info-circle"></i></a>
+                                    </div>
+                                     
+                                </div><!-- .cats-links -->
+                            </header><!-- .entry-header -->
+
+                            <div class="entry-content">
+                                <p class="m-0">When you donate to this fund, you help underprivileged communities get access to essential sanitary equipment</p>
+                            </div><!-- .entry-content -->
+
+                            <div class="entry-footer mt-5">
+                                <a href="#donation-form" class="btn gradient-bg mr-2" onClick="setDonationDetails()">Donate Now</a>
+                            </div><!-- .entry-footer -->
+                        </div><!-- .cause-content-wrap -->
+
+                        <div id = "fund_raised_details" class="fund-raised w-100">
+                            <!--<div class="featured-fund-raised-bar barfiller">
+                                <div class="tipWrap">
+                                    <span class="tip"></span>
+                                </div>
+
+                                <span  class="fill" data-percentage="24"></span>
+                            </div>
+
+                            <div class="fund-raised-details d-flex flex-wrap justify-content-between align-items-center">
+                                <div class="fund-raised-total mt-4">
+                                    Raised: 2.4 ETH
+                                </div>
+
+                                <div class="fund-raised-goal mt-4">
+                                    Requirement: 10 ETH 
+                                </div>
+                            </div>
+                            <div class="fund-raised-details" style="text-align:center">   
+                                <span><i>1 ETH ~ INR 10,000</i></span>
+                            </div>-->
+                        </div><!-- .fund-raised -->
+                    </div><!-- .cause-wrap -->
+                </div><!-- .col -->
+
+                <div class="col-12 col-lg-6">
+                    <div class="cause-wrap d-flex flex-wrap justify-content-between">
+                        <figure class="m-0">
+                            <img src="images/cause-2.jpeg" alt="">
+                        </figure>
+
+                        <div class="cause-content-wrap">
+                            <header class="entry-header d-flex flex-wrap align-items-center">
+                                <h3 class="entry-title w-100 m-0"><a href="#" style="text-decoration:none">Medical Aid</a></h3>
+
+                                <div class="posted-date">
+                                    <a href="#" style="text-decoration:none">Mar 22</a>
+                                </div><!-- .posted-date -->
+
+                                <div class="cats-links">
+                                    <a href="#" style="text-decoration:none">Govt. of India</a>
+                                </div><!-- .cats-links -->
+                            </header><!-- .entry-header -->
+
+                            <div class="entry-content">
+                                <p class="m-0">Every rupee you donate helps in providing medical aid to people affected by the pandemic</p>
+                            </div><!-- .entry-content -->
+
+                            <div class="entry-footer mt-5">
+                                <a href="#" class="btn gradient-bg mr-2">Donate Now</a>
+                            </div><!-- .entry-footer -->
+                        </div><!-- .cause-content-wrap -->
+
+                        <div class="fund-raised w-100">
+                            
+                            <div class="fund-raised-details d-flex flex-wrap justify-content-between align-items-center">
+                                <div class="fund-raised-total mt-4">
+                                    <b>Raised:</b> 12.5 ETH
+                                </div><!-- .fund-raised-total -->
+
+                                <div class="fund-raised-goal mt-4">
+                                    <b>Requirement:</b> 25 ETH
+                                </div><!-- .fund-raised-goal -->
+                            </div><!-- .fund-raised-details -->
+                            <div class="fund-raised-details" style="text-align:center">   
+                                <span><i>1 ETH ~ INR 10,000</i></span>
+                            </div>
+                        </div><!-- .fund-raised -->
+                    </div><!-- .cause-wrap -->
+                </div><!-- .col -->
+            </div><!-- .row -->
+        </div><!-- .container -->
+    </div><!-- .featured-cause -->
+
+
+    <div class="container" style="margin-top:30pt">
+        <div class="row">
+            <div class="col-12">
+                <h4 style="margin:20pt; text-align:center"><b>Make a Donation</b></h4>
+                <div class="donation-form-wrap" style="padding-top: 10pt">
+                    <form class="donation-form" id="donation-form">
+                        <div class="donate-amount-wrap d-flex flex-wrap align-items-center mt-5">
+                            <label class="radio-label">
+                                <input type="radio" name="donation_amount" value="0.05" onclick="setAmt(0.05)"/>
+                                <span class="donate-amount">0.05 ETH</span>
+                            </label>
+
+                            <label class="radio-label">
+                                <input type="radio" name="donation_amount" value="0.1" onclick="setAmt(0.1)"/>
+                                <span class="donate-amount">0.1 ETH</span>
+                            </label>
+
+                            <label class="radio-label">
+                                <input type="radio" name="donation_amount" value="0.25" checked="checked" onclick="setAmt(0.25)"/>
+                                <span class="donate-amount">0.25 ETH</span>
+                            </label>
+
+                            <label class="radio-label">
+                                <input type="radio" name="donation_amount" value="0.5" onclick="setAmt(0.5)"/>
+                                <span class="donate-amount">0.5 ETH</span>
+                            </label>
+
+                            <label class="radio-label">
+                                <input type="radio" name="donation_amount" value="1" onclick="setAmt(1)"/>
+                                <span class="donate-amount">1 ETH</span>
+                            </label>
+
+                            <!--<label class="radio-label">
+                                <input type="radio" name="donation_amount" value="custom" />
+                                <span class="donate-amount">Other Amount</span>
+                            </label>-->
+                        </div>
+
+                        <div class="payment-type d-flex flex-wrap align-items-center">
+                            <h4 class="w-100 mt-5">Payment Type</h4>
+
+                            <label class="d-flex align-items-center mt-4">
+                                <input type="radio" name="payment_type" value="One time" checked="checked"/>
+                                <span class="payment-type-radio"></span>
+                                <span class="centered-dot"></span>
+
+                                One time
+                            </label>
+
+                            <label class="d-flex align-items-center mt-4">
+                                <input type="radio" name="payment_type" value="Recurring"  />
+                                <span class="payment-type-radio"></span>
+                                <span class="centered-dot"></span>
+
+                                Recurring
+                            </label>
+                        </div>
+
+                        <div class="billing-information  d-flex flex-wrap justify-content-between align-items-center">
+                            <h4 class="w-100 mt-5 mb-3">Confirm Donation Details</h4>
+                            <input type="text" placeholder="Name" id="donate_name">
+                            <input type="email" placeholder="E-mail" id="donate_email">
+                            <input type="text" placeholder="Donor Ethereum Address" id="donate_addr">
+                            <input type="text" placeholder="Receiver Ethereum Address" id="donate_recv_addr">
+                            <input type="text" placeholder="Cause" id="donate_cause">
+                            <input type="text" placeholder="Amount Donated (in ETH)" id="donate_amt">
+                        </div>
+
+                        <div class="payment-type d-flex flex-wrap align-items-center">
+                            <h4 class="w-100 mt-5">Payment Method</h4>
+
+                            <label class="d-flex align-items-center mt-4">
+                                <input type="radio" name="payment_method" value="crypto" checked="checked" />
+                                <span class="payment-type-radio"></span>
+                                <span class="centered-dot"></span>
+
+                                Cryptocurrency (ETH)
+                            </label>
+
+                            <label class="d-flex align-items-center mt-4">
+                                <input type="radio" name="payment_method" value="credit_card" />
+                                <span class="payment-type-radio"></span>
+                                <span class="centered-dot"></span>
+
+                                Credit Card
+                            </label>
+
+                            <label class="d-flex align-items-center mt-4">
+                                <input type="radio" name="payment_method" value="paypal" />
+                                <span class="payment-type-radio"></span>
+                                <span class="centered-dot"></span>
+
+                                PayPal
+                            </label>
+                        </div>
+
+                        <input class="btn gradient-bg mt-5" type="submit" value="Donate Now" onClick=donate()>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <footer class="site-footer">
+        <div class="footer-widgets">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="foot-about">
+                            <h2><a class="foot-logo" href="#"><b style="color:white">HumanChain</b></a></h2>
+
+                            <p>HumanChain is an initiative of bringing together people to lend a helping hand to help fight against this pandemic. Help can be extended as assistance to the house bound elderly or monetarily. Extending help would ensure we combat this in the best way possible.</p>
+
+                            <ul class="d-flex flex-wrap align-items-center">
+
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+
+                            </ul>
+                        </div><!-- .foot-about -->
+                    </div><!-- .col -->
+
+                    <div class="col-12 col-md-6 col-lg-4 mt-5 mt-md-0">
+                        <h2><b>Useful Links</b></h2>
+
+                        <ul>
+                            <li><a href="services.html">Need Assistance</a></li>
+                            <li><a href="volunteer.html">Become a Volunteer</a></li>
+                            <li><a href="donate.html">Donate</a></li>
+                        </ul>
+                    </div><!-- .col -->
+
+
+                    <div class="col-12 col-md-6 col-lg-4 mt-5 mt-md-0">
+                        <div class="foot-contact">
+                            <h2><b>Contact</b></h2>
+
+                            <ul>
+                                <li><i class="fa fa-phone"></i><span>+91 11111 11111 / +91 22222 22222</span></li>
+                                <li><i class="fa fa-envelope"></i><span>contact@humanchain.com</span></li>
+                                <li><i class="fa fa-map-marker"></i><span>ABC Bldg, Sector X, PQRS, Mumbai, India</span></li>
+                            </ul>
+                        </div><!-- .foot-contact -->
+
+                        <div class="subscribe-form">
+                            <form class="d-flex flex-wrap align-items-center">
+                                <input type="email" placeholder="Your email">
+                                <input type="submit" value="send">
+                            </form><!-- .flex -->
+                        </div><!-- .search-widget -->
+                    </div><!-- .col -->
+                </div><!-- .row -->
+            </div><!-- .container -->
+        </div><!-- .footer-widgets -->
+
+        <div class="footer-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <p class="m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Created with <i class="fa fa-heart-o" aria-hidden="true"></i> by Tezan & Nambilakshmi
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                    </div><!-- .col-12 -->
+                </div><!-- .row -->
+            </div><!-- .container -->
+        </div><!-- .footer-bar -->
+    </footer><!-- .site-footer -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type='text/javascript' src='js/firebase.js'></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCkODpP7cfjqd2_WtmIQLersdsjGbavs4&callback=initMap" type="text/javascript"></script>
+    <script type='text/javascript' src='js/utils.js'></script>
+    <script type='text/javascript' src='js/jquery.js'></script>
+    <script type='text/javascript' src='js/jquery.collapsible.min.js'></script>
+    <script type='text/javascript' src='js/swiper.min.js'></script>
+    <script type='text/javascript' src='js/jquery.countdown.min.js'></script>
+    <script type='text/javascript' src='js/circle-progress.min.js'></script>
+    <script type='text/javascript' src='js/jquery.countTo.min.js'></script>
+    <script type='text/javascript' src='js/jquery.barfiller.js'></script>
+    <script type='text/javascript' src='js/custom.js'></script>
+</body>
+</html>

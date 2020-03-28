@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>HumanChain</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="shortcut icon" href="./images/help_logo.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <!-- ElegantFonts CSS -->
+    <link rel="stylesheet" href="css/elegant-fonts.css">
+
+    <!-- themify-icons CSS -->
+    <link rel="stylesheet" href="css/themify-icons.css">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="css/swiper.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+</head>
+<body class="single-page about-page">
+
+    <header class="site-header">
+        <div class="top-header-bar">
+            <div class="container">
+                <div class="row flex-wrap justify-content-center justify-content-lg-between align-items-lg-center">
+                    <div id="user_info" class="col-12 col-lg-8 d-none d-md-flex flex-wrap justify-content-center justify-content-lg-start mb-3 mb-lg-0">
+                        Loading Details...
+                    </div><!-- .col -->
+
+                    <div class="col-12 col-lg-4 d-flex flex-wrap justify-content-center justify-content-lg-end align-items-center">
+                        <div class="donate-btn">
+                            <a href="./index.html">Logout</a>
+                        </div>
+                    </div><!-- .col -->
+                </div><!-- .row -->
+            </div><!-- .container -->
+        </div><!-- .top-header-bar -->
+
+        <div class="nav-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 d-flex flex-wrap justify-content-between align-items-center">
+                        <a class="d-block" href="index.html" rel="home" style="text-decoration: none;">
+                            <div style="display:inline-block;vertical-align:top;">
+                                <img src="./images/help_logo.png" alt="img"/>
+                            </div>
+                            <div style="display:inline-block;">
+                                <h3>HumanChain</h3>
+                            </div>
+                        </a>
+                        <nav class="site-navigation d-flex justify-content-end align-items-center">
+                            <ul id="nav_bar" class="d-flex flex-column flex-lg-row justify-content-lg-end align-content-center">
+                                <li><a href="index.html">Home</a></li>
+                                <li class="current-menu-item"><a href="services.html">Need Assistance?</a></li>
+                                <li><a href="volunteer.html">Volunteer</a></li>
+                                <li><a href="donate.html">Donate</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </nav><!-- .site-navigation -->
+
+                        <div class="hamburger-menu d-lg-none">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div><!-- .hamburger-menu -->
+                    </div><!-- .col -->
+                </div><!-- .row -->
+            </div><!-- .container -->
+        </div><!-- .nav-bar -->
+    </header><!-- .site-header -->
+
+    <div class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1>Need Assistance?</h1>
+                </div><!-- .col -->
+            </div><!-- .row -->
+        </div><!-- .container -->
+    </div><!-- .page-header -->
+    
+    <div class="contact-page-wrap">
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-12">
+                    <h4 style="margin:20pt; text-align:center"><b>Fill the Form to Avail Assistance during COVID-19</b></h4>
+                    <form class="contact-form" style="margin-top:20pt">
+                        <h4 style="padding-bottom: 5pt;">Personal Details:</h4>
+
+                        <input id="service_name" type="text" placeholder="Name">
+
+                        <input id="service_addr" type="text" placeholder="Residential Address">
+                        
+                        <h4 style="padding-bottom: 5pt; padding-top: 10pt">Details for Assistance:</h4>
+
+                        <select class="form-control service_type" id="service_type">
+                            <option selected disabled>Type of Service:</option>
+                            <option value="medicines">Medicines</option>
+                            <option value="physical_assistance">Physical Assistance</option>
+                            <option value="daily_essentials">Daily Essentials</option>
+                        </select>
+
+                        <textarea rows="15" cols="6" id="service_descr" placeholder="Description"></textarea>
+
+                        <span>
+                            <p class="service_note" id="service_note"></p>
+                        <span>
+
+                        <span>
+                            <input class="btn gradient-bg" type="submit" value="Submit" onClick="newAidNeeded()">
+                        </span>
+
+                        
+                    </form>
+
+                    <div class="alert alert-success alert-dismissible fade hide">
+                        <strong>Success!</strong> Your message has been sent successfully.
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-widgets">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="foot-about">
+                            <h2><a class="foot-logo" href="#"><b style="color:white">HumanChain</b></a></h2>
+
+                            <p>HumanChain is an initiative of bringing together people to lend a helping hand to help fight against this pandemic. Help can be extended as assistance to the house bound elderly or monetarily. Extending help would ensure we combat this in the best way possible.</p>
+
+                            <ul class="d-flex flex-wrap align-items-center">
+
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+
+                            </ul>
+                        </div><!-- .foot-about -->
+                    </div><!-- .col -->
+
+                    <div class="col-12 col-md-6 col-lg-4 mt-5 mt-md-0">
+                        <h2><b>Useful Links</b></h2>
+
+                        <ul>
+                            <li><a href="services.html">Need Assistance</a></li>
+                            <li><a href="volunteer.html">Become a Volunteer</a></li>
+                            <li><a href="donate.html">Donate</a></li>
+                        </ul>
+                    </div><!-- .col -->
+
+
+                    <div class="col-12 col-md-6 col-lg-4 mt-5 mt-md-0">
+                        <div class="foot-contact">
+                            <h2><b>Contact</b></h2>
+
+                            <ul>
+                                <li><i class="fa fa-phone"></i><span>+91 11111 11111 / +91 22222 22222</span></li>
+                                <li><i class="fa fa-envelope"></i><span>contact@humanchain.com</span></li>
+                                <li><i class="fa fa-map-marker"></i><span>ABC Bldg, Sector X, PQRS, Mumbai, India</span></li>
+                            </ul>
+                        </div><!-- .foot-contact -->
+
+                        <div class="subscribe-form">
+                            <form class="d-flex flex-wrap align-items-center">
+                                <input type="email" placeholder="Your email">
+                                <input type="submit" value="send">
+                            </form><!-- .flex -->
+                        </div><!-- .search-widget -->
+                    </div><!-- .col -->
+                </div><!-- .row -->
+            </div><!-- .container -->
+        </div><!-- .footer-widgets -->
+
+        <div class="footer-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <p class="m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Created with <i class="fa fa-heart-o" aria-hidden="true"></i> by Tezan & Nambilakshmi
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                    </div><!-- .col-12 -->
+                </div><!-- .row -->
+            </div><!-- .container -->
+        </div><!-- .footer-bar -->
+    </footer><!-- .site-footer -->
+    <script type='text/javascript' src='js/firebase.js'></script>
+    <script type='text/javascript' src='js/jquery.js'></script>
+    <script type='text/javascript' src='js/jquery.collapsible.min.js'></script>
+    <script type='text/javascript' src='js/swiper.min.js'></script>
+    <script type='text/javascript' src='js/jquery.countdown.min.js'></script>
+    <script type='text/javascript' src='js/circle-progress.min.js'></script>
+    <script type='text/javascript' src='js/jquery.countTo.min.js'></script>
+    <script type='text/javascript' src='js/jquery.barfiller.js'></script>
+    <script type='text/javascript' src='js/custom.js'></script>
+</body>
+</html>
