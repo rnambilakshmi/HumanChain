@@ -1,0 +1,19 @@
+{
+  "name": "devpost_28_03_2020",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rnambilakshmi/Devpost_28_03_2020.git"
+  },
+  "author": "Tezan Sahu, R. Nambilakshmi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rnambilakshmi/Devpost_28_03_2020/issues"
+  },
+  "homepage": "https://github.com/rnambilakshmi/Devpost_28_03_2020#readme"
+}
