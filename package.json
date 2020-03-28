@@ -1,5 +1,5 @@
 {
-  "name": "devpost_28_03_2020",
+  "name": "humanChain",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/rnambilakshmi/Devpost_28_03_2020/issues"
   },
-  "homepage": "https://github.com/rnambilakshmi/Devpost_28_03_2020#readme"
+  "homepage": "https://github.com/rnambilakshmi/Devpost_28_03_2020#readme",
+  "dependencies": {
+    "@truffle/hdwallet-provider": "^1.0.15",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "ipfs": "^0.41.2",
+    "truffle-contract": "^4.0.31",
+    "web3": "^1.0.0-beta.34"
+  }
 }
