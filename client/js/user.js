@@ -69,7 +69,8 @@ function login(){
                     console.log(user)
                     window.localStorage.setItem("user", JSON.stringify(user))
                     document.getElementById("login_spin").style.display = "block";
-                    window.location.replace("./index.html");
+                    // window.location.replace("./index.html");
+                    window.history.back();
                 }
                 else{
                     document.getElementById("login_spin").style.display = "none";

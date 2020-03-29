@@ -121,13 +121,20 @@ function tip(){
 
 
 function newAidNeeded(){
+    document.getElementById("service_success").style.display = "none";
+    document.getElementById("service_err").style.display = "none";
+
     let name = document.getElementById("service_name").value;
     let res_addr = document.getElementById("service_addr").value;
     let descr = document.getElementById("service_descr").value;
-    // let payment_mode;
-    let service_type = document.getElementById("service_type").value;
-    console.log(name, res_addr, descr, service_type);
 
+    let service_type = document.getElementById("service_type").value;
+    if(name == "" || res_addr == "" || descr == "" || service_type == "Type of Service:"){
+        document.getElementById("service_err").innerHTML = "Field can't remain empty";
+        document.getElementById("service_err").style.display = "block";
+        return;
+    }
+    console.log(name, res_addr, descr, service_type);
     if(service_type != "medicines"){
         firebase.database().ref(`services/${service_type}`).push({
             name: name,
@@ -135,6 +142,7 @@ function newAidNeeded(){
             descr: descr,
             status: "Help Needed",
         });
+        document.getElementById("service_success").style.display = "block";
     }
     else{
         prescription_hash = document.getElementById("ipfs_hash").value;
@@ -145,10 +153,11 @@ function newAidNeeded(){
             status: "Help Needed",
             prescription_hash: prescription_hash
         });
+        document.getElementById("service_success").style.display = "block";
     }
     
 
-    alert("Request for Assistance has been recorded")
+    // alert("Request for Assistance has been recorded")
 }
 
 

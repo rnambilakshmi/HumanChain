@@ -2049,6 +2049,10 @@ ul.tabs-nav .tab-nav.active {
     cursor: pointer;
 }
 
+.contact-form input[type="button"] {
+    cursor: pointer;
+}
+
 .donation-form input[type="submit"] {
     cursor: pointer;
 }

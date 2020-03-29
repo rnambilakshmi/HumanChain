@@ -166,13 +166,17 @@ function retrieveAidsNeeded(){
 retrieveAidsNeeded()
 
 function matchAidWithVolunteer(){
+    document.getElementById("service_err").style.display = "none";
+    document.getElementById("service_success").style.display = "none";
+    
     let id = document.getElementById("volunteer_id").value;
     let service_type;
     try{
         service_type = requests[id]["type"];
     }
     catch {
-        alert("Invalid ID");
+        document.getElementById("service_err").innerHTML = "Invalid ID";
+        document.getElementById("service_err").style.display = "block"
         return
     }
     
@@ -192,10 +196,12 @@ function matchAidWithVolunteer(){
         
     }
     catch{
-        alert("Sorry! Could not process your request")
+        document.getElementById("service_err").innerHTML = "Sorry! Could not process your request";
+        document.getElementById("service_err").style.display = "block"
         return;
     }
-    alert("You have been successfully matched to " + requests[id]["name"])
+    document.getElementById("service_success").innerHTML = "You have been successfully matched to " + requests[id]["name"];
+    document.getElementById("service_success").style.display = "block";
     
 }
 

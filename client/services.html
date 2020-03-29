@@ -149,13 +149,19 @@
                                     </div>
                                 </div>
                         </span>
-                        <span>
+                        <!--<span>
                             <p class="service_note" id="service_note"></p>
-                        <span>
+                        <span>-->
+                        <div id="service_err" class="alert alert-danger" role="alert" style="display: none">
+                            Some error
+                        </div>
 
                         <span>
-                            <input class="btn gradient-bg" type="submit" value="Submit" onClick="newAidNeeded()">
-                        </span>                        
+                            <input class="btn gradient-bg" type="button" value="Submit" onClick="newAidNeeded()">
+                        </span>   
+                        <div id="service_success" class="alert alert-success" role="alert" style="display: none">
+                            Your request for assistance has been successfully recorded!
+                        </div>                     
                     </form>
                 </div>
             </div>

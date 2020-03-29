@@ -177,7 +177,9 @@ retrieveCauses()
 function setDonationDetails(){
     document.getElementById("donate_name").value = user["name"];
     document.getElementById("donate_email").value = user["email"];
-    document.getElementById("donate_addr").value = user["addr"];
+    if(user["addr"] != null){
+        document.getElementById("donate_addr").value = user["addr"];
+    }
     document.getElementById("donate_recv_addr").value = causes[1]["creator"];
     document.getElementById("donate_cause").value = causes[1]["descr"];
     document.getElementById("donate_amt").value = 0.25;

@@ -167,10 +167,15 @@
                     <h4 style="margin-top:20pt; margin-bottom: -30pt; text-align:center"><b>Select A Request To Volunteer For</b></h4>
                     <form class="contact-form" style="margin-top:20pt">
                         <input id="volunteer_id" type="text" placeholder="Request ID">
-
+                        <div id="service_err" class="alert alert-danger" role="alert" style="display: none">
+                            Some error
+                        </div>
                         <span>
-                            <input class="btn gradient-bg" type="submit" value="Volunteer" onClick="matchAidWithVolunteer()">
+                            <input class="btn gradient-bg" type="button" value="Volunteer" onClick="matchAidWithVolunteer()">
                         </span>
+                        <div id="service_success" class="alert alert-success" role="alert" style="display: none">
+                            Your request for assistance has been successfully recorded!
+                        </div>
                     </form>
                 </div>
             </div>
