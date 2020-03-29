@@ -4,6 +4,8 @@ let requests = {};
 
 let causes = {};
 
+let user={};
+
 var firebaseConfig = {
     apiKey: "AIzaSyAao3z-m_bfaVk6LdAKn1CmOMkMmvFSFZk",
     authDomain: "helpinghand-tsrn.firebaseapp.com",
@@ -30,26 +32,53 @@ function doCall(url, callback){
 }
 
 function getBal(addr){
+    if(addr == null){
+        console.log("No address!")
+        document.getElementById("user_info").innerHTML = `
+        <pre style="padding-top:10pt; margin-bottom:-10pt">
+<b>Name: &nbsp;</b>${user["name"]}
+<b>Email ID: &nbsp;</b>${user["email"]}
+        </pre>
+        `
+    }
+    else{
+        doCall(`${url}/ethBalance?address=${addr}`, (bal) => {
+            // Change necessary values
+            console.log("Balance:", res);
+            document.getElementById("user_info").innerHTML = `
+            <pre style="padding-top:10pt; margin-bottom:-10pt">
+<b>Name: &nbsp;</b>${user["name"]}
+<b>Ethereum Address: &nbsp;</b> ${addr}
+<b>Balance: &nbsp;</b> ${(bal/ 1000000000000000000).toFixed(2)} ETH
+            </pre>
+            `
+            
+        })
+    }
     
-    doCall(`${url}/ethBalance?address=${addr}`, (res) => {
-        // Change necessary values
-        console.log("Balance:", res);
-        getUserDetails(addr, res)
-    })
 }
 
-function getAddr(){
-    doCall(`${url}/address?address=donate`, (res) => {
-        // Change necessary values
-        console.log(res)
+// function getBal(addr){
+    
+//     doCall(`${url}/ethBalance?address=${addr}`, (res) => {
+//         // Change necessary values
+//         console.log("Balance:", res);
+//         getUserDetails(addr, res)
+//     })
+// }
 
-        getUserDetails(res)
+// function getAddr(){
+//     doCall(`${url}/address?address=donate`, (res) => {
+//         // Change necessary values
+//         console.log(res)
 
-        getBal(res)
-    })
-}
+//         getUserDetails(res)
 
-getAddr()
+//         getBal(res)
+//     })
+// }
+
+// getAddr()
 
 function retrieveAidsNeeded(){
     let service_types = ["medicines", "daily_essentials", "physical_assistance"];
@@ -147,7 +176,7 @@ function matchAidWithVolunteer(){
         return
     }
     
-    let volunteer = "R. Nambilakshmi";
+    let volunteer = user["name"];
     try{
         let database = firebase.database().ref('services/' + service_type);
         database.on('value', function(snapshot){
@@ -170,21 +199,45 @@ function matchAidWithVolunteer(){
     
 }
 
-function getUserDetails(addr, bal){
-    let database = firebase.database().ref('users');
-    database.on('value', function(snapshot){
-        snapshot.forEach(snap => {
-            if(snap.val().addr == addr) {
-                console.log("Reached here")
-                document.getElementById("user_info").innerHTML = `
-                <pre style="padding-top:10pt; margin-bottom:-10pt">
-<b>Name: &nbsp;</b>${snap.val()["name"]}
-<b>Ethereum Address: &nbsp;</b> ${snap.val()["addr"]}
-<b>Balance: &nbsp;</b> ${(bal/ 1000000000000000000).toFixed(2)} ETH
-                </pre>
-                `
+// function getUserDetails(addr, bal){
+//     let database = firebase.database().ref('users');
+//     database.on('value', function(snapshot){
+//         snapshot.forEach(snap => {
+//             if(snap.val().addr == addr) {
+//                 console.log("Reached here")
+//                 document.getElementById("user_info").innerHTML = `
+//                 <pre style="padding-top:10pt; margin-bottom:-10pt">
+// <b>Name: &nbsp;</b>${snap.val()["name"]}
+// <b>Ethereum Address: &nbsp;</b> ${snap.val()["addr"]}
+// <b>Balance: &nbsp;</b> ${(bal/ 1000000000000000000).toFixed(2)} ETH
+//                 </pre>
+//                 `
                 
-            }
-        })
-    })
+//             }
+//         })
+//     })
+// }
+
+function loadUser(){
+    user = JSON.parse(window.localStorage.getItem('user'));
+    console.log(user);
+    if(user == null){
+        document.getElementById("login_btn").style.display = "block";
+        document.getElementById("logout_btn").style.display = "none";
+        document.getElementById("user_info").innerHTML = "Not Logged In";
+    }
+    else{
+        document.getElementById("login_btn").style.display = "none";
+        document.getElementById("logout_btn").style.display = "block";
+        document.getElementById("user_info").innerHTML = "Loading...";
+        getBal(user["addr"])
+    }
+}
+
+loadUser()
+
+function logout(){
+    console.log("Logout");
+    window.localStorage.removeItem("user");
+    location.reload();
 }

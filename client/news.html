@@ -27,6 +27,8 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
+
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
 </head>
 <body class="single-page news-page">
     <header class="site-header">
@@ -34,12 +36,15 @@
             <div class="container">
                 <div class="row flex-wrap justify-content-center justify-content-lg-between align-items-lg-center">
                     <div id="user_info" class="col-12 col-lg-8 d-none d-md-flex flex-wrap justify-content-center justify-content-lg-start mb-3 mb-lg-0">
-                        Not Logged In
+                        Loading...
                     </div><!-- .col -->
 
                     <div class="col-12 col-lg-4 d-flex flex-wrap justify-content-center justify-content-lg-end align-items-center">
-                        <div class="donate-btn">
-                            <a href="./services.html">Login/Register</a>
+                        <div id="login_btn" class="donate-btn" style="display: none;">
+                            <a href="./login_reg.html">Login / Register</a>
+                        </div>
+                        <div id="logout_btn" class="donate-btn" style="display: block;">
+                            <a href="#" onClick="logout()">Logout</a>
                         </div><!-- .donate-btn -->
                     </div><!-- .col -->
                 </div><!-- .row -->

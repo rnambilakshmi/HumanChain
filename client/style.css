@@ -2297,9 +2297,147 @@ ul.tabs-nav .tab-nav.active {
     background: -o-linear-gradient(180deg, rgba(20, 191, 199, 1) 0%, rgba(0, 154, 172, 1) 100%); /* opera 11.10+ */
     background: -ms-linear-gradient(180deg, rgba(20, 191, 199, 1) 0%, rgba(0, 154, 172, 1) 100%); /* ie10+ */
     background: linear-gradient(270deg, rgba(20, 191, 199, 1) 0%, rgba(0, 154, 172, 1) 100%); /* w3c */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#60d3db', endColorstr='#009aac',GradientType=1 ); /* ie6-9 */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#60d3db', endColorstr='#009aac',GradientType=1 ); /* ie6-9 */
 }
 
 .gradient-bg-button:hover{
     background: #009aac;
+}
+
+.user-page .page-header {
+    background: url(images/user-bg.jpeg) no-repeat center;
+}
+
+.user-page .welcome-wrap {
+    padding: 96px 0;
+}
+
+.user-page .welcome-content .entry-title {
+    color: #262626;
+}
+
+@media screen and (max-width: 992px){
+    .user-page .welcome-content .entry-title {
+        margin-top: 60px;
+    }
+}
+
+.user-page .welcome-content .entry-content {
+    color: #929191;
+}
+
+.user-page .welcome-wrap img {
+    display: block;
+    width: 100%;
+}
+
+
+.user-form {
+    padding: 35px 20px 35px;
+    margin-top: 30px;
+    background: #edf3f5;
+}
+
+.user-form input[type="text"],
+.user-form input[type="email"],
+.user-form input[type="password"],
+.user-form textarea {
+    width: 100%;
+    padding: 12px 12px;
+    margin-bottom: 18px;
+    border: 1px solid #e0e0e0;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.user-form select{
+    width: 100%;
+    padding: 2px 24px;
+    margin-bottom: 18px;
+    border: 1px solid #e0e0e0;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.user-form input[type="text"]:focus,
+.user-form input[type="email"]:focus,
+.user-form input[type="email"]:focus,
+.user-form select:focus
+.user-form textarea:focus {
+    outline: none;
+}
+
+.user-form input[type="text"]::placeholder,
+.user-form input[type="email"]::placeholder,
+.user-form input[type="email"]::placeholder,
+.user-form textarea::placeholder {
+    color: #929191;
+}
+
+.user-form span {
+    display: block;
+    margin-top: 16px;
+    text-align: center;
+}
+
+.user-form input[type="submit"] {
+    cursor: pointer;
+}
+
+
+.user-form input[type="button"] {
+    cursor: pointer;
+}
+
+.user-form .radio-label {
+    display : block;
+}
+
+.user-form .radio-label > input[type="radio"] {
+    visibility: hidden;
+    position: absolute;
+}
+
+.user-form .payment-type input[type="radio"] {
+    visibility: hidden;
+    position: absolute;
+}
+
+.user-form .payment-type label {
+    position: relative;
+    margin-right: 40px;
+    font-size: 14px;
+    line-height: 1;
+    color: #6a6a6a;
+}
+
+.user-form .payment-type input[type="radio"] + .payment-type-radio {
+    display: block;
+    width: 18px;
+    height: 18px;
+    margin-right: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+}
+
+.user-form .payment-type input[type="radio"] + .payment-type-radio + .centered-dot {
+    visibility: hidden;
+    display: block;
+    position: absolute;
+    left: 7px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #ff5e06;
+}
+
+.user-form .payment-type input[type="radio"]:checked + .payment-type-radio {
+    border-color: #ff5e06;
+}
+
+
+.user-form .payment-type input[type="radio"]:checked + .payment-type-radio + .centered-dot {
+    visibility: visible;
 }

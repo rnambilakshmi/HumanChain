@@ -24,6 +24,8 @@
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="css/swiper.min.css">
 
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
 </head>
@@ -33,13 +35,16 @@
             <div class="container">
                 <div class="row flex-wrap justify-content-center justify-content-lg-between align-items-lg-center">
                     <div id="user_info" class="col-12 col-lg-8 d-none d-md-flex flex-wrap justify-content-center justify-content-lg-start mb-3 mb-lg-0">
-                        Not Logged In
+                        Loading Details...
                     </div><!-- .col -->
 
                     <div class="col-12 col-lg-4 d-flex flex-wrap justify-content-center justify-content-lg-end align-items-center">
-                        <div class="donate-btn">
-                            <a href="./services.html">Login/Register</a>
-                        </div><!-- .donate-btn -->
+                        <div id="login_btn" class="donate-btn" style="display: none;">
+                            <a href="./login_reg.html">Login / Register</a>
+                        </div>
+                        <div id="logout_btn" class="donate-btn" style="display: block;">
+                            <a href="#" onClick="logout()">Logout</a>
+                        </div>
                     </div><!-- .col -->
                 </div><!-- .row -->
             </div><!-- .container -->
@@ -201,6 +206,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         </div><!-- .footer-bar -->
     </footer><!-- .site-footer -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCkODpP7cfjqd2_WtmIQLersdsjGbavs4&callback=initMap" type="text/javascript"></script>
+    <script type="text/javascript" src="js/contact.js">
     <script type='text/javascript' src='js/jquery.js'></script>
     <script type='text/javascript' src='js/jquery.collapsible.min.js'></script>
     <script type='text/javascript' src='js/swiper.min.js'></script>

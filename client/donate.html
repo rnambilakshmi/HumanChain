@@ -1,4 +1,4 @@
-`<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>HumanChain</title>
@@ -43,9 +43,12 @@
                     </div><!-- .col -->
 
                     <div class="col-12 col-lg-4 d-flex flex-wrap justify-content-center justify-content-lg-end align-items-center">
-                        <div class="donate-btn">
-                            <a href="./index.html">Logout</a>
-                        </div><!-- .donate-btn -->
+                        <div id="login_btn" class="donate-btn" style="display: none;">
+                            <a href="./login_reg.html">Login / Register</a>
+                        </div>
+                        <div id="logout_btn" class="donate-btn" style="display: block;">
+                            <a href="#" onClick="logout()">Logout</a>
+                        </div>
                     </div><!-- .col -->
                 </div><!-- .row -->
             </div><!-- .container -->
@@ -397,7 +400,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     </footer><!-- .site-footer -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script type='text/javascript' src='js/firebase.js'></script>
+    <!--<script type='text/javascript' src='js/firebase.js'></script>-->
     <script type='text/javascript' src='js/donate.js'></script>
     <script type='text/javascript' src='js/utils.js'></script>
     <script type='text/javascript' src='js/jquery.js'></script>

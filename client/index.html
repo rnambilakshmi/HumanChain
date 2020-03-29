@@ -27,20 +27,25 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
+
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
 </head>
 <body>
     <header class="site-header">
         <div class="top-header-bar">
             <div class="container">
                 <div class="row flex-wrap justify-content-center justify-content-lg-between align-items-lg-center">
-                    <div class="col-12 col-lg-8 d-none d-md-flex flex-wrap justify-content-center justify-content-lg-start mb-3 mb-lg-0">
-                        Not Logged In
+                    <div id="user_info" class="col-12 col-lg-8 d-none d-md-flex flex-wrap justify-content-center justify-content-lg-start mb-3 mb-lg-0">
+                        Loading Details...
                     </div><!-- .col -->
 
                     <div class="col-12 col-lg-4 d-flex flex-wrap justify-content-center justify-content-lg-end align-items-center">
-                        <div class="donate-btn">
-                            <a href="./services.html">Login/Register</a>
-                        </div><!-- .donate-btn -->
+                        <div id="login_btn" class="donate-btn" style="display: none;">
+                            <a href="./login_reg.html">Login / Register</a>
+                        </div>
+                        <div id="logout_btn" class="donate-btn" style="display: block;">
+                            <a href="#" onClick="logout()">Logout</a>
+                        </div>
                     </div><!-- .col -->
                 </div><!-- .row -->
             </div><!-- .container -->
@@ -81,6 +86,7 @@
         </div><!-- .nav-bar -->
     </header><!-- .site-header -->
 
+    
 
     <div class="swiper-container hero-slider">
         <div class="swiper-wrapper">
@@ -358,7 +364,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         </div><!-- .footer-bar -->
     </footer><!-- .site-footer -->
 
-    <script type='text/javascript' src='js/utils.js'></script>
+    <script type='text/javascript' src='js/index.js'></script>
     <script type='text/javascript' src='js/jquery.js'></script>
     <script type='text/javascript' src='js/jquery.collapsible.min.js'></script>
     <script type='text/javascript' src='js/swiper.min.js'></script>

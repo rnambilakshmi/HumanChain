@@ -32,12 +32,30 @@ function doCall(url, callback){
 }
 
 function getBal(addr){
+    if(addr == null){
+        console.log("No address!")
+        document.getElementById("user_info").innerHTML = `
+        <pre style="padding-top:10pt; margin-bottom:-10pt">
+<b>Name: &nbsp;</b>${user["name"]}
+<b>Email ID: &nbsp;</b>${user["email"]}
+        </pre>
+        `
+    }
+    else{
+        doCall(`${url}/ethBalance?address=${addr}`, (bal) => {
+            // Change necessary values
+            console.log("Balance:", res);
+            document.getElementById("user_info").innerHTML = `
+            <pre style="padding-top:10pt; margin-bottom:-10pt">
+<b>Name: &nbsp;</b>${user["name"]}
+<b>Ethereum Address: &nbsp;</b> ${addr}
+<b>Balance: &nbsp;</b> ${(bal/ 1000000000000000000).toFixed(2)} ETH
+            </pre>
+            `
+            
+        })
+    }
     
-    doCall(`${url}/ethBalance?address=${addr}`, (res) => {
-        // Change necessary values
-        console.log("Balance:", res);
-        getUserDetails(addr, res)
-    })
 }
 
 function getAddr(){
@@ -50,7 +68,6 @@ function getAddr(){
     })
 }
 
-getAddr()
 
 function createCause(){
     // Get value of variables
@@ -70,27 +87,6 @@ function createCause(){
     })
 }
 
-function donate(){
-    let addr = document.getElementById("donate_addr").value;
-    let id = 1;
-    let amt = document.getElementById("donate_amt").value;
-    doCall(`${url}/donate?address=${addr}&id=${id}&amt=${amt}`, (res) => {
-        let database = firebase.database().ref('causes');
-        database.on('value', function(snapshot){
-            snapshot.forEach(snap => {
-                if(JSON.parse(snap.val().id) == id) {
-                    new_donated = parseFloat(snap.val().donated) + parseFloat(amt);
-                    let db = firebase.database().ref('causes/' + snap.key);
-                    db.update({
-                        donated: new_donated
-                    })
-                }
-            })
-
-            getAddr()
-        })
-    })
-}
 
 function withdraw(){
     let addr;
@@ -120,56 +116,6 @@ function tip(){
         getBal()
     })
 }
-
-function retrieveCauses(){
-    let database = firebase.database().ref('causes');
-    database.on('value', function(snapshot){
-        snapshot.forEach(snap => {
-            console.log(snap.val())
-            // console.log(`${service_type}_table_body`)
-            // document.getElementById(`${service_type}_table_body`).innerHTML += 
-            //     `<tr class="clickable-row" value=${snap.key}>
-            //     <th scope="row">${snap.key}</th>
-            //     <td>${snap.val()["name"]}</td>
-            //     <td>${snap.val()["res_addr"]}</td>
-            //     <td>${snap.val()["descr"]}</td>
-            //     <td>${snap.val()["status"]}</td>
-            //     </tr>
-            //     `
-            document.getElementById("creator").title = `Ethereum Address: ${snap.val()["creator"]}`;
-            document.getElementById("cause_1_descr").innerHTML = `<a href="#" style="text-decoration:none">${snap.val()["descr"]}</a>`;
-            let percent = 100*snap.val()["donated"]/snap.val()["requirement"];
-            document.getElementById("fund_raised_details").innerHTML = 
-                `
-                <div style="margin-top:-10pt" class="fund-raised-details d-flex flex-wrap justify-content-between align-items-center">
-                    <div class="fund-raised-total mt-4">
-                        <b>Raised:</b> ${snap.val()["donated"]} ETH
-                    </div><!-- .fund-raised-total -->
-
-                    <div class="fund-raised-goal mt-4">
-                        <b>Requirement:</b> ${snap.val()["requirement"]} ETH 
-                    </div>
-                </div>
-                <div class="fund-raised-details" style="text-align:center">   
-                    <span><i>1 ETH ~ INR 10,000</i></span>
-                </div>
-                `
-            // let percent = 100*parseFloat(snap.val()["donated"])/parseFloat(snap.val()["requirement"]);
-            
-            console.log("Percent: ", percent);
-
-            causes[snap.val()["id"]] = {
-                "creator": snap.val()["creator"],
-                "donated": snap.val()["donated"],
-                "descr": snap.val()["descr"],
-                "requirement": snap.val()["requirement"],
-                "withdrawn": snap.val()["withdrawn"],
-            }
-        })
-    })
-}
-
-retrieveCauses()
 
 
 
@@ -230,17 +176,30 @@ function getUserDetails(addr, bal){
     })
 }
 
-function setDonationDetails(){
-    document.getElementById("donate_name").value = user["name"];
-    document.getElementById("donate_addr").value = user["addr"];
-    document.getElementById("donate_recv_addr").value = causes[1]["creator"];
-    document.getElementById("donate_cause").value = causes[1]["descr"];
-    document.getElementById("donate_amt").value = 0.25;
+function loadUser(){
+    user = JSON.parse(window.localStorage.getItem('user'));
+    console.log(user);
+    if(user == null){
+        document.getElementById("login_btn").style.display = "block";
+        document.getElementById("logout_btn").style.display = "none";
+        document.getElementById("user_info").innerHTML = "Not Logged In";
+    }
+    else{
+        document.getElementById("login_btn").style.display = "none";
+        document.getElementById("logout_btn").style.display = "block";
+        document.getElementById("user_info").innerHTML = "Loading...";
+        getBal(user["addr"])
+    }
 }
 
-function setAmt(amt){
-    document.getElementById("donate_amt").value = amt;
+loadUser()
+
+function logout(){
+    console.log("Logout");
+    window.localStorage.removeItem("user");
+    location.reload();
 }
+
 
 
 
