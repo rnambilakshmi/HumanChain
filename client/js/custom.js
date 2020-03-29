@@ -1,12 +1,42 @@
+
+
 (function($) {
     // 'use strict';
+    $('#upload_prescription_button').hide();
+    $("#ipfs_button").attr("disabled", "disabled");
+
+
+    $(document).on("input", "#service_prescription_file", function() {
+        // console.log($("#service_prescription_file").val());
+        $("#ipfs_button").removeAttr("disabled");
+    })
+
     $(function(){
         $('.service_type').change(function(){
             var a = $(this).val();
             console.log(a)
-            if(a === "medicines" || a === "daily_essentials"){
-                var msg = `<i><b>Note:</b> You will have to provide the money for buying ${a} to the volunteer</i>`;
-                $('.service_note').html(msg); // selector for div
+            // if(a === "medicines" || a === "daily_essentials"){
+            //     var msg = `<i><b>Note:</b> You will have to provide the money for buying ${a} to the volunteer</i>`;
+            //     $('.service_note').html(msg); // selector for div
+            // }
+
+            if(a === "medicines"){
+                $('#upload_prescription_button').show();
+                var msg = `<i><b>Note:</b> You will have to provide the money for buying Medicines to the volunteer</i>`;
+                $('.service_note').html(msg);
+            }
+            else{
+                $("#service_prescription_file").val("")
+                $("#ipfs_hash").val("")
+                $("#ipfs_url").removeAttr("href")
+                $('#upload_prescription_button').hide();
+                if(a === "daily_essentials"){
+                    var msg = `<i><b>Note:</b> You will have to provide the money for buying Daily Essentials to the volunteer</i>`;
+                    $('.service_note').html(msg);
+                }
+                else{
+                    $('.service_note').html("");
+                }
             }
         });
     });
@@ -92,7 +122,7 @@
         size: 156,
         thickness: 3,
         fill: {
-            gradient: ["#60d3db", "#009aac"]
+            gradient: ["#ff5a00", "#ff3600"]
         }
     }).on('circle-animation-progress', function(event, progress) {
         $(this).find('strong').html(Math.round(83 * progress) + '<i>%</i>');
@@ -104,7 +134,7 @@
         size: 156,
         thickness: 3,
         fill: {
-            gradient: ["#60d3db", "#009aac"]
+            gradient: ["#ff5a00", "#ff3600"]
         }
     }).on('circle-animation-progress', function(event, progress) {
         $(this).find('strong').html(Math.round(100 * progress) + '<i>%</i>');
@@ -116,7 +146,7 @@
         size: 156,
         thickness: 3,
         fill: {
-            gradient: ["#60d3db", "#009aac"]
+            gradient: ["#ff5a00", "#ff3600"]
         }
     }).on('circle-animation-progress', function(event, progress) {
         $(this).find('strong').html(Math.round(75 * progress) + '<i>%</i>');
@@ -128,7 +158,7 @@
         size: 156,
         thickness: 3,
         fill: {
-            gradient: ["#60d3db", "#009aac"]
+            gradient: ["#ff5a00", "#ff3600"]
         }
     }).on('circle-animation-progress', function(event, progress) {
         $(this).find('strong').html(Math.round(65 * progress) + '<i>%</i>');
@@ -146,14 +176,14 @@
     });
 
     // Bar Filler
-    $('.featured-fund-raised-bar').barfiller({ barColor: '#60d3db', duration: 1500 });
+    $('.featured-fund-raised-bar').barfiller({ barColor: '#ff5a00', duration: 1500 });
 
-    $('.fund-raised-bar-1').barfiller({ barColor: '#60d3db', duration: 1500 });
-    $('.fund-raised-bar-2').barfiller({ barColor: '#60d3db', duration: 1500 });
-    $('.fund-raised-bar-3').barfiller({ barColor: '#60d3db', duration: 1500 });
-    $('.fund-raised-bar-4').barfiller({ barColor: '#60d3db', duration: 1500 });
-    $('.fund-raised-bar-5').barfiller({ barColor: '#60d3db', duration: 1500 });
-    $('.fund-raised-bar-6').barfiller({ barColor: '#60d3db', duration: 1500 });
+    $('.fund-raised-bar-1').barfiller({ barColor: '#ff5a00', duration: 1500 });
+    $('.fund-raised-bar-2').barfiller({ barColor: '#ff5a00', duration: 1500 });
+    $('.fund-raised-bar-3').barfiller({ barColor: '#ff5a00', duration: 1500 });
+    $('.fund-raised-bar-4').barfiller({ barColor: '#ff5a00', duration: 1500 });
+    $('.fund-raised-bar-5').barfiller({ barColor: '#ff5a00', duration: 1500 });
+    $('.fund-raised-bar-6').barfiller({ barColor: '#ff5a00', duration: 1500 });
 
     // Load more
     let $container      = $('.portfolio-container');

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>HumanChain</title>
+    <title>HelpingHand</title>
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -28,6 +28,18 @@
     <link rel="stylesheet" href="style.css">
 
     <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/ipfs/dist/index.min.js"></script>
+
+    <!--<script src="https://wzrd.in/standalone/buffer"></script>
+    <script src="https://unpkg.com/ipfs-api@9.0.0/dist/index.js"></script>
+    <script src="https://unpkg.com/ipfs/dist/index.min.js"></script>-->
+
+    <script src="https://wzrd.in/standalone/buffer"></script>
+    <script src="https://unpkg.com/ipfs-api@9.0.0/dist/index.js"
+    integrity="sha384-5bXRcW9kyxxnSMbOoHzraqa7Z0PQWIao+cgeg327zit1hz5LZCEbIMx/LWKPReuB"
+    crossorigin="anonymous"></script>
+
 </head>
 <body class="single-page about-page">
 
@@ -57,7 +69,7 @@
                                 <img src="./images/help_logo.png" alt="img"/>
                             </div>
                             <div style="display:inline-block;">
-                                <h3>HumanChain</h3>
+                                <h3>HelpingHand</h3>
                             </div>
                         </a>
                         <nav class="site-navigation d-flex justify-content-end align-items-center">
@@ -114,23 +126,33 @@
                             <option value="daily_essentials">Daily Essentials</option>
                         </select>
 
-                        <textarea rows="15" cols="6" id="service_descr" placeholder="Description"></textarea>
-
+                        <textarea style="margin-bottom:0" rows="15" cols="6" id="service_descr" placeholder="Description"></textarea>
+                        <span style="text-align:left; " id="upload_prescription_button">
+                             
+                                <label style="margin-left: 5pt" for="service_prescription" >Upload Prescription</label>
+                                <div class = "row">
+                                    <div class="col-6 col-lg-6">
+                                        <input style="margin-left: 5pt" id="service_prescription_file" type="file" class="form-control-file">
+                                    </div>
+                                    <div class="col-6 col-lg-6">
+                                        <button type="button" id="ipfs_button" onClick="upload()">Get IPFS Hash</button>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top:10pt">
+                                    <div class="col-6 col-lg-6"></div>
+                                    <div class="col-6 col-lg-6">
+                                        <a target="_blank" id="ipfs_url"><input style="cursor: pointer" type="text" id="ipfs_hash" placeholder="IPFS Hash of Prescription" readonly></a>
+                                    </div>
+                                </div>
+                        </span>
                         <span>
                             <p class="service_note" id="service_note"></p>
                         <span>
 
                         <span>
                             <input class="btn gradient-bg" type="submit" value="Submit" onClick="newAidNeeded()">
-                        </span>
-
-                        
+                        </span>                        
                     </form>
-
-                    <div class="alert alert-success alert-dismissible fade hide">
-                        <strong>Success!</strong> Your message has been sent successfully.
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -142,9 +164,9 @@
                 <div class="row">
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="foot-about">
-                            <h2><a class="foot-logo" href="#"><b style="color:white">HumanChain</b></a></h2>
+                            <h2><a class="foot-logo" href="#"><b style="color:white">HelpingHand</b></a></h2>
 
-                            <p>HumanChain is an initiative of bringing together people to lend a helping hand to help fight against this pandemic. Help can be extended as assistance to the house bound elderly or monetarily. Extending help would ensure we combat this in the best way possible.</p>
+                            <p>HelpingHand is an initiative of bringing together people to lend a helping hand to help fight against this pandemic. Help can be extended as assistance to the house bound elderly or monetarily. Extending help would ensure we combat this in the best way possible.</p>
 
                             <ul class="d-flex flex-wrap align-items-center">
 
@@ -172,7 +194,7 @@
 
                             <ul>
                                 <li><i class="fa fa-phone"></i><span>+91 11111 11111 / +91 22222 22222</span></li>
-                                <li><i class="fa fa-envelope"></i><span>contact@humanchain.com</span></li>
+                                <li><i class="fa fa-envelope"></i><span>contact@helpinghand.com</span></li>
                                 <li><i class="fa fa-map-marker"></i><span>ABC Bldg, Sector X, PQRS, Mumbai, India</span></li>
                             </ul>
                         </div><!-- .foot-contact -->
@@ -200,6 +222,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             </div><!-- .container -->
         </div><!-- .footer-bar -->
     </footer><!-- .site-footer -->
+    
+    <script type='text/javascript' src='js/ipfs.js'></script>
     <script type='text/javascript' src='js/firebase.js'></script>
     <script type='text/javascript' src='js/jquery.js'></script>
     <script type='text/javascript' src='js/jquery.collapsible.min.js'></script>
