@@ -44,10 +44,11 @@ function getBal(addr){
     else{
         doCall(`${url}/ethBalance?address=${addr}`, (bal) => {
             // Change necessary values
-            console.log("Balance:", res);
+            console.log("Balance:", bal);
             document.getElementById("user_info").innerHTML = `
             <pre style="padding-top:10pt; margin-bottom:-10pt">
 <b>Name: &nbsp;</b>${user["name"]}
+<b>Email ID: &nbsp;</b>${user["email"]}
 <b>Ethereum Address: &nbsp;</b> ${addr}
 <b>Balance: &nbsp;</b> ${(bal/ 1000000000000000000).toFixed(2)} ETH
             </pre>

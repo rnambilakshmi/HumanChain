@@ -11,18 +11,17 @@ async function createCause(address, requirement, callback){
     let humanChain_instance = new web3.eth.Contract(humanChain_json.abi, humanChain_json.networks[chainID]["address"]);
     let id = await humanChain_instance.methods.createCause(web3.utils.toWei(requirement, "ether")).call({from: address});
     console.log(id)
-    let tx = humanChain_instance.methods.createCause(web3.utils.toWei(requirement, "ether")).send({from: address, gas:3000000});
-    console.log(id, tx)
-    callback(id, "txhash");
+    let tx = await humanChain_instance.methods.createCause(web3.utils.toWei(requirement, "ether")).send({from: address, gas:3000000});
+    callback(id, tx["transactionHash"]);
 }
 
 async function donate(address, id, amount, callback){
     let chainID  = await web3.eth.net.getId();
     let humanChain_instance = new web3.eth.Contract(humanChain_json.abi, humanChain_json.networks[chainID]["address"]);
 
-    let tx = humanChain_instance.methods.donate(id).send({from: address, value: web3.utils.toWei(amount, 'ether'), gas:3000000})
+    let tx = await humanChain_instance.methods.donate(id).send({from: address, value: web3.utils.toWei(amount, 'ether'), gas:3000000})
     console.log(tx)
-    callback("txhash");
+    callback(tx["transactionHash"]);
 }
 
 async function withdraw(address, id, callback){
