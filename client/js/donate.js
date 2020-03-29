@@ -84,24 +84,27 @@ function donate(){
     let addr = document.getElementById("donate_addr").value;
     let id = 1;
     let amt = document.getElementById("donate_amt").value;
+    let found_key = "";
+    let donated_amt;
     doCall(`${url}/donate?address=${addr}&id=${id}&amt=${amt}`, (res) => {
         let database = firebase.database().ref('causes');
         database.on('value', function(snapshot){
             snapshot.forEach(snap => {
                 console.log("Hi there")
                 if(JSON.parse(snap.val().id) == id) {
-                    new_donated = parseFloat(snap.val().donated) + parseFloat(amt);
-                    console.log("New donated ", new_donated)
-                    let db = firebase.database().ref('causes/' + snap.key);
-                    db.update({
-                        donated: new_donated
-                    })
+                    found_key = snap.key;
+                    donated_amt = snap.val().donated;
+                    return;
                 }
             })
-
-            getAddr()
-            return;
         })
+        new_amt = donated_amt + parseFloat(amt);
+        let db = firebase.database().ref('causes/' + found_key);
+
+        db.update({
+            donated: new_amt
+        })
+        window.location.reload();
     })
 }
 
