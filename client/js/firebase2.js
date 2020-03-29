@@ -55,30 +55,81 @@ function retrieveAidsNeeded(){
     let service_types = ["medicines", "daily_essentials", "physical_assistance"];
 
     for(i =0; i < service_types.length; i++){
+        console.log(i);
         let service_type = service_types[i];
         let database = firebase.database().ref('services/' + service_type);
-        database.on('value', function(snapshot){
-            snapshot.forEach(snap => {
-                console.log(snap.val())
-                console.log(`${service_type}_table_body`)
-                document.getElementById(`${service_type}_table_body`).innerHTML += 
-                    `<tr class="clickable-row" value=${snap.key}>
-                    <th scope="row">${snap.key}</th>
-                    <td>${snap.val()["name"]}</td>
-                    <td>${snap.val()["res_addr"]}</td>
-                    <td>${snap.val()["descr"]}</td>
-                    <td>${snap.val()["status"]}</td>
-                    </tr>
-                    `
-                requests[snap.key] = {
-                    "name": snap.val()["name"],
-                    "addr": snap.val()["res_addr"],
-                    "descr": snap.val()["descr"],
-                    "status": snap.val()["status"],
-                    "type": service_type
-                }
+        if(service_type != "medicines"){
+            console.log("medicine")
+            database.on('value', function(snapshot){
+                snapshot.forEach(snap => {
+                    console.log(snap.val())
+                    console.log(`${service_type}_table_body`)
+                    document.getElementById(`${service_type}_table_body`).innerHTML += 
+                        `<tr class="clickable-row" value=${snap.key}>
+                        <th scope="row">${snap.key}</th>
+                        <td>${snap.val()["name"]}</td>
+                        <td>${snap.val()["res_addr"]}</td>
+                        <td>${snap.val()["descr"]}</td>
+                        <td>${snap.val()["status"]}</td>
+                        </tr>
+                        `
+                    requests[snap.key] = {
+                        "name": snap.val()["name"],
+                        "addr": snap.val()["res_addr"],
+                        "descr": snap.val()["descr"],
+                        "status": snap.val()["status"],
+                        "type": service_type
+                    }
+                })
             })
-        })
+        }
+        else{
+            console.log("other");
+            database.on('value', function(snapshot){
+                snapshot.forEach(snap => {
+                    console.log(snap.val())
+                    console.log(`${service_type}_table_body`)
+                    document.getElementById(`${service_type}_table_body`).innerHTML += 
+                        `<tr class="clickable-row" value=${snap.key}>
+                        <th scope="row">${snap.key}</th>
+                        <td>${snap.val()["name"]}</td>
+                        <td>${snap.val()["res_addr"]}</td>
+                        <td>${snap.val()["descr"]} <br ><a target="_blank" href="https://ipfs.io/ipfs/${snap.val()["prescription_hash"]}"><button class="gradient-bg-button">View Prescription</button></a></td>
+                        <td>${snap.val()["status"]}</td>
+                        </tr>
+                        `
+                    requests[snap.key] = {
+                        "name": snap.val()["name"],
+                        "addr": snap.val()["res_addr"],
+                        "descr": snap.val()["descr"],
+                        "status": snap.val()["status"],
+                        "type": service_type
+                    }
+                })
+            })
+        }
+        // database.on('value', function(snapshot){
+        //     snapshot.forEach(snap => {
+        //         console.log(snap.val())
+        //         console.log(`${service_type}_table_body`)
+        //         document.getElementById(`${service_type}_table_body`).innerHTML += 
+        //             `<tr class="clickable-row" value=${snap.key}>
+        //             <th scope="row">${snap.key}</th>
+        //             <td>${snap.val()["name"]}</td>
+        //             <td>${snap.val()["res_addr"]}</td>
+        //             <td>${snap.val()["descr"]}</td>
+        //             <td>${snap.val()["status"]}</td>
+        //             </tr>
+        //             `
+        //         requests[snap.key] = {
+        //             "name": snap.val()["name"],
+        //             "addr": snap.val()["res_addr"],
+        //             "descr": snap.val()["descr"],
+        //             "status": snap.val()["status"],
+        //             "type": service_type
+        //         }
+        //     })
+        // })
     }
     
 }

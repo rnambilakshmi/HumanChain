@@ -182,13 +182,25 @@ function newAidNeeded(){
     let service_type = document.getElementById("service_type").value;
     console.log(name, res_addr, descr, service_type);
 
-
-    firebase.database().ref(`services/${service_type}`).push({
-        name: name,
-        res_addr: res_addr,
-        descr: descr,
-        status: "Help Needed",
-    });
+    if(service_type != "medicines"){
+        firebase.database().ref(`services/${service_type}`).push({
+            name: name,
+            res_addr: res_addr,
+            descr: descr,
+            status: "Help Needed",
+        });
+    }
+    else{
+        prescription_hash = document.getElementById("ipfs_hash").value;
+        firebase.database().ref(`services/${service_type}`).push({
+            name: name,
+            res_addr: res_addr,
+            descr: descr,
+            status: "Help Needed",
+            prescription_hash: prescription_hash
+        });
+    }
+    
 
     alert("Request for Assistance has been recorded")
 }
