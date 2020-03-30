@@ -38,9 +38,10 @@ app.get('/createCause', (req, res) => {
 
 app.get('/donate', (req, res) => {
     console.log(req.query);
-    web3_humanChain.donate(req.query.address, req.query.id, req.query.amt, (txHash) => {
-        res.send(txHash);
-    })
+    res.send("0xTestTxHash");
+    // web3_humanChain.donate(req.query.address, req.query.id, req.query.amt, (txHash) => {
+    //     res.send(txHash);
+    // })
 })
 
 app.get('/withdraw', (req, res) => {

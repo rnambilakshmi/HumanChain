@@ -2026,6 +2026,16 @@ ul.tabs-nav .tab-nav.active {
     line-height: 1;
 }
 
+.donation-form select{
+    width: 100%;
+    padding: 2px 24px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border: 1px solid #e0e0e0;
+    font-size: 14px;
+    line-height: 1;
+}
+
 .contact-form input[type="text"]:focus,
 .contact-form input[type="email"]:focus,
 .contact-form select:focus

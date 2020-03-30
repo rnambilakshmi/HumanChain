@@ -104,8 +104,10 @@ function donate(){
         db.update({
             donated: new_amt
         })
+        console.log(res);
+        document.getElementById("donation_crypto_success").innerHTML += res;
         document.getElementById("donation_crypto_success").style.display = "block";
-        window.location.reload();
+        // window.location.reload();
     })
 }
 
@@ -245,6 +247,7 @@ function disableButtons(){
     console.log("reached here")
     document.getElementById("crypto_warn").style.display = "block";
     document.getElementById("donate_card_warn").style.display = "block";
+    document.getElementById("kind_warn").style.display = "block";
 }
 
 loadUser()
@@ -267,31 +270,36 @@ function getExchangeRate(){
 
 getExchangeRate();
 
+function showInCashForm(){
+    console.log("cash");
+    document.getElementById("donation_type").innerHTML = 
+    `
+    <a class="btn gradient-bg mr-2" onCLick="showInCashForm()">Cash</a>
+    <a class="btn orange-border" onClick="showInKindForm()">Kind</a>
+    `
+    document.getElementById("cash_form").style.display = "block";
+    document.getElementById("kind_form").style.display = "none";
+}
 
-// function setCardAmt(){
-//     console.log(document.getElementById("donate_card_val"))
-//     let amt = parseFloat(document.getElementById("donate_card_val").value)*100;
-//     console.log(amt);
-//     console.log(document.getElementById("card_form"))
-//     document.getElementById("card_form").innerHTML = `
-//     <form class="payment-form" method="POST" action="./donate.html">
-//     <script>
-//         window.CKOConfig = {
-//             publicKey: 'pk_test_ace025e7-10de-4ff9-9c7d-7d8fdb54de07',
-//             customerEmail: ${document.getElementById("donate_card_email").value},
-//             value: ${amt},
-//             currency: "USD",
-//             paymentMode: 'cards',
-//             cardFormMode: 'cardTokenisation',
-//             cardTokenised: function(event) {
-//                 console.log(event.data.cardToken);
-//             }
-//         };
-//     </script>
-    
-//     </form>
-//     `
+function showInKindForm(){
+    console.log("kind");
+    document.getElementById("donation_type").innerHTML = 
+    `
+    <a class="btn orange-border" onCLick="showInCashForm()">Cash</a>
+    <a class="btn gradient-bg mr-2" onClick="showInKindForm()">Kind</a>
+    `
+    document.getElementById("cash_form").style.display = "none";
+    document.getElementById("kind_form").style.display = "block";
+}
 
 
-// }
+function donateInKind(){
+    name = document.getElementById("kind_donate_name").value;
+    email = document.getElementById("kind_donate_email").value;
+    location = document.getElementById("kind_donate_loc").value;
+    type = document.getElementById("kind_donate_name").value;
+    particular = document.getElementById("kind_donate_particular").value;
+    qty = document.getElementById("kind_donate_qty").value;
 
+
+}

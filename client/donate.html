@@ -110,7 +110,7 @@
 
             <div class="row">
                 <div class="col-12 col-lg-6">
-                    <div class="cause-wrap d-flex flex-wrap justify-content-between">
+                    <div class="cause-wrap d-flex flex-wrap justify-content-between" style="padding-bottom: 10pt">
                         <figure class="m-0">
                             <img src="images/welfare.jpg" alt="">
                         </figure>
@@ -143,7 +143,7 @@
                             </div><!-- .entry-footer -->
                         </div><!-- .cause-content-wrap -->
 
-                        <div id = "fund_raised_details" class="fund-raised w-100">
+                        <div id = "fund_raised_details" class="fund-raised w-100" style="margin-top:10pt" >
                             <!--<div class="featured-fund-raised-bar barfiller">
                                 <div class="tipWrap">
                                     <span class="tip"></span>
@@ -168,8 +168,8 @@
                     </div><!-- .cause-wrap -->
                 </div><!-- .col -->
 
-                <div class="col-12 col-lg-6">
-                    <div class="cause-wrap d-flex flex-wrap justify-content-between">
+                <div class="col-6 col-lg-6">
+                    <div class="cause-wrap d-flex flex-wrap justify-content-between" style="padding-bottom: 10pt">
                         <figure class="m-0">
                             <img src="images/medical.jpg" alt="">
                         </figure>
@@ -195,9 +195,8 @@
                                 <a href="#" class="btn gradient-bg mr-2">Donate Now</a>
                             </div><!-- .entry-footer -->
                         </div><!-- .cause-content-wrap -->
-
-                        <div class="fund-raised w-100">
-                            
+                        
+                        <div class="fund-raised w-100" style="margin-top:10pt">
                             <div class="fund-raised-details d-flex flex-wrap justify-content-between align-items-center">
                                 <div class="fund-raised-total mt-4">
                                     <b>Raised:</b> 12.5 ETH
@@ -222,7 +221,13 @@
         <div class="row">
             <div class="col-12">
                 <h4 style="margin:20pt; text-align:center"><b>Make a Donation</b></h4>
-                <div class="donation-form-wrap" style="padding-top: 10pt">
+                <div id="donation_type" style="text-align:center; margin-bottom: 10pt">
+                    <a class="btn gradient-bg mr-2" onCLick="showInCashForm()">Cash</a>
+                    <a class="btn orange-border" onClick="showInKindForm()">Kind</a>
+                    <!--<input class="formbtn gradient-bg" type="button"  value="Cash" onClick=showInCashForm()>
+                    <input class = "btn gradient-bg" type="button" value="Kind" onClick=showInKindForm()>-->
+                </div>
+                <div id="cash_form" class="donation-form-wrap" style="padding-top: 10pt">
                     <form class="donation-form" id="donation-form">
 
                         <div class="payment-type d-flex flex-wrap align-items-center">
@@ -279,32 +284,7 @@
                                     <input type="radio" name="donation_amount" value="1" onclick="setAmt(1)"/>
                                     <span class="donate-amount">1 ETH</span>
                                 </label>
-
-                                <!--<label class="radio-label">
-                                    <input type="radio" name="donation_amount" value="custom" />
-                                    <span class="donate-amount">Other Amount</span>
-                                </label>-->
                             </div>
-
-                            <!--<div class="payment-type d-flex flex-wrap align-items-center">
-                                <h4 class="w-100 mt-5">Payment Type</h4>
-
-                                <label class="d-flex align-items-center mt-4">
-                                    <input type="radio" name="payment_type" value="One time" checked="checked"/>
-                                    <span class="payment-type-radio"></span>
-                                    <span class="centered-dot"></span>
-
-                                    One time
-                                </label>
-
-                                <label class="d-flex align-items-center mt-4">
-                                    <input type="radio" name="payment_type" value="Recurring"  />
-                                    <span class="payment-type-radio"></span>
-                                    <span class="centered-dot"></span>
-
-                                    Recurring
-                                </label>
-                            </div>-->
 
                             <div class="billing-information  d-flex flex-wrap justify-content-between align-items-center">
                                 <h4 class="w-100 mt-5 mb-3">Confirm Donation Details</h4>
@@ -320,10 +300,10 @@
                                 Login to donate
                             </div>
 
-                            <input class="btn-after-login btn gradient-bg" type="button" style="margin-top:10pt" value="Donate Now" onClick=donate()>
+                            <input class="btn-after-login btn gradient-bg" type="button" style="margin-top:20pt" value="Donate Now" onClick=donate()>
                         </div>
-                        <div id="donation_crypto_success" class="alert alert-success" role="alert" style="display: none">
-                            Donation has been successfully received!
+                        <div id="donation_crypto_success" class="alert alert-success" role="alert" style="display: none; margin-top: 20pt">
+                            Donation has been successfully received! <br /> <b>Transaction Hash:</b> 
                         </div>
 
                         <div id="card_subform" style="display: none">
@@ -369,6 +349,41 @@
                                 Yet to be implemented! Please try again later.
                             </div> 
                         </div>
+                    </form>
+                </div>
+
+                <div id="kind_form" class="donation-form-wrap" style="padding-top: 10pt; display:none">
+                    <form class="donation-form" id="donation-form">
+                        <div class="billing-information  d-flex flex-wrap justify-content-between align-items-center">
+                            <h4 class="w-100 mt-5 mb-1">Personal Details</h4>
+                            <input type="text" placeholder="Name" id="kind_donate_name">
+                            <input type="email" placeholder="E-mail" id="kind_donate_email">
+                            <input type="text" placeholder="Location" id="kind_donate_loc">
+                        </div>
+                        <div class="billing-information  d-flex flex-wrap justify-content-between align-items-center">
+                            <h4 class="w-100 mt-5 mb-1">Donation Details</h4>
+                            <select class="form-control donation_type" id="kind_donate_type">
+                                <option selected disabled>Type of Donation:</option>
+                                <option value="groceries">Groceries</option>
+                                <option value="sanitation">Sanitation Products</option>
+                                <option value="other">Others</option>
+                            </select>
+                            
+                            <br />
+
+                            <input type="text" placeholder="Particulars" id="kind_donate_particular">
+                            <input type="text" placeholder="Quantity" id="kind_donate_qty">
+
+                        </div>
+                        <div id="kind_warn" class="alert alert-warning" role="alert" style="display: none; margin-top: 20pt" >
+                            Login to donate
+                        </div>
+                        <input class="btn-after-login btn gradient-bg" type="button" style="margin-top:10pt" value="Donate Now" onClick=donateInKind()>
+
+                        <div id="donation_kind_success" class="alert alert-success" role="alert" style="display: none; margin-top: 20pt">
+                            Donation has been successfully received! 
+                        </div>
+                        
                     </form>
                 </div>
             </div>
