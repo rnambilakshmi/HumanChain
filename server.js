@@ -15,7 +15,7 @@ app.all('/*', function(req, res, next) {
 });
 
 app.get('/', (req,res) => {
-    res.send('HelpingHand API')
+    res.send('HumanChain API')
 })
 
 app.get('/address', (req,res) => {
