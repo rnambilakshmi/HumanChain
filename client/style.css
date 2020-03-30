@@ -912,6 +912,34 @@ ul.tabs-nav .tab-nav.active {
     padding: 96px 0;
 }
 
+.my-cause-wrap {
+    padding: 40px 24px;
+    background: #edf3f5;
+}
+
+.entry-title a {
+    font-size: 18px;
+    font-weight: 600;
+    color: #262626;
+}
+
+.cats-links a {
+    display: block;
+    position: relative;
+    margin-top: 6px;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1;
+    color: #262626;
+}
+
+.entry-content {
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-size: 14px;
+    color: #929191;
+}
+
 .cause-wrap {
     margin-top: 50px;
 }

@@ -131,12 +131,12 @@ function retrieveCauses(){
             let percent = 100*snap.val()["donated"]/snap.val()["requirement"];
             document.getElementById("fund_raised_details").innerHTML = 
                 `
-                <div style="margin-top:-10pt" class="fund-raised-details d-flex flex-wrap justify-content-between align-items-center">
-                    <div class="fund-raised-total mt-4">
+                <div class="fund-raised-details d-flex flex-wrap justify-content-between align-items-center">
+                    <div class="fund-raised-total">
                         <b>Raised:</b> ${snap.val()["donated"]} ETH
                     </div><!-- .fund-raised-total -->
 
-                    <div class="fund-raised-goal mt-4">
+                    <div class="fund-raised-goal">
                         <b>Requirement:</b> ${snap.val()["requirement"]} ETH 
                     </div>
                 </div>
@@ -291,7 +291,8 @@ function showInKindForm(){
 function donateInKind(){
     name = document.getElementById("kind_donate_name").value;
     email = document.getElementById("kind_donate_email").value;
-    loc = document.getElementById("kind_donate_loc").value;
+    loc = document.getElementById("kind_donate_loc").value.replace(/ /g, "+");
+    console.log(loc);
     type = document.getElementById("kind_donate_type").value;
     particular = document.getElementById("kind_donate_particular").value;
     qty = document.getElementById("kind_donate_qty").value;
@@ -320,6 +321,7 @@ function retrieveDonations(){
         let database = firebase.database().ref('donations/' + type);
 
         database.on('value', function(snapshot){
+            document.getElementById("loading_donations").style.display = "none";
             snapshot.forEach(snap => {
                 console.log(snap.val())
                 document.getElementById(`donations_table_body`).innerHTML += 
@@ -327,7 +329,7 @@ function retrieveDonations(){
                         <td>${type}</th>
                         <td>${snap.val()["particular"]}</td>
                         <td>${snap.val()["qty"]}</td>
-                        <td>${snap.val()["location"]}</td>
+                        <td><a target="_blank" href="https://www.google.com/maps/search/${snap.val()["location"]}"><button class="gradient-bg-button">View</button></a></td>
                     </tr>
                     `
                 requests[snap.key] = {
