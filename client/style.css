@@ -2049,12 +2049,26 @@ ul.tabs-nav .tab-nav.active {
     cursor: pointer;
 }
 
-.contact-form input[type="button"] {
+/* .contact-form input[type="button"] {
     cursor: pointer;
-}
+} */
 
 .donation-form input[type="submit"] {
     cursor: pointer;
+}
+
+/* .donation-form input[type="button"] {
+    cursor: pointer;
+} */
+
+.btn-after-login{
+    cursor: pointer;
+}
+
+.btn-after-login:disabled {
+    cursor: not-allowed;
+    color:#262626;
+    background: #009aac;
 }
 
 .contact-form .radio-label {
@@ -2445,3 +2459,47 @@ ul.tabs-nav .tab-nav.active {
 .user-form .payment-type input[type="radio"]:checked + .payment-type-radio + .centered-dot {
     visibility: visible;
 }
+
+.cko-pay-now{
+    padding: 5pt;
+    border: 0;
+    border-radius: 2pt;
+    font-size: 12px;
+    line-height: 1;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 2px 2px 1px grey;
+
+    background: -moz-linear-gradient(180deg, rgba(20, 191, 199, 1) 0%, rgba(0, 154, 172, 1) 100%); /* ff3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(20, 191, 199, 1)), color-stop(100%, rgba(1255,54,0,1))); /* safari4+,chrome */
+    background: -webkit-linear-gradient(180deg, rgba(20, 191, 199, 1) 0%, rgba(0, 154, 172, 1) 100%); /* safari5.1+,chrome10+ */
+    background: -o-linear-gradient(180deg, rgba(20, 191, 199, 1) 0%, rgba(0, 154, 172, 1) 100%); /* opera 11.10+ */
+    background: -ms-linear-gradient(180deg, rgba(20, 191, 199, 1) 0%, rgba(0, 154, 172, 1) 100%); /* ie10+ */
+    background: linear-gradient(270deg, rgba(20, 191, 199, 1) 0%, rgba(0, 154, 172, 1) 100%); /* w3c */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#60d3db', endColorstr='#009aac',GradientType=1 ); /* ie6-9 */
+}
+
+
+.login-tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+  }
+  
+  .btn-after-login:disabled:hover .login-tooltiptext {
+    visibility: visible;
+  }

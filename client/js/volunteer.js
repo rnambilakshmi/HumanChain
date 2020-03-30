@@ -232,12 +232,20 @@ function loadUser(){
         document.getElementById("login_btn").style.display = "block";
         document.getElementById("logout_btn").style.display = "none";
         document.getElementById("user_info").innerHTML = "Not Logged In";
+        disableButtons();
     }
     else{
         document.getElementById("login_btn").style.display = "none";
         document.getElementById("logout_btn").style.display = "block";
         document.getElementById("user_info").innerHTML = "Loading...";
         getBal(user["addr"])
+    }
+}
+
+function disableButtons(){
+    let btns = document.getElementsByClassName("btn-after-login");
+    for (let i = 0; i < btns.length; i++){
+        btns[i].disabled = true;
     }
 }
 

@@ -104,6 +104,7 @@ function donate(){
         db.update({
             donated: new_amt
         })
+        document.getElementById("donation_crypto_success").style.display = "block";
         window.location.reload();
     })
 }
@@ -137,12 +138,12 @@ function retrieveCauses(){
                         <b>Requirement:</b> ${snap.val()["requirement"]} ETH 
                     </div>
                 </div>
-                <div class="fund-raised-details" style="text-align:center">   
-                    <span><i>1 ETH ~ INR 10,000</i></span>
+                <div class="fund-raised-details exchange" style="text-align:center">   
+                    <span><i>Fetching latest exchange rates...</i></span>
                 </div>
                 `
             // let percent = 100*parseFloat(snap.val()["donated"])/parseFloat(snap.val()["requirement"]);
-            
+            getExchangeRate();
             console.log("Percent: ", percent);
 
             causes[snap.val()["id"]] = {
@@ -225,12 +226,21 @@ function loadUser(){
         document.getElementById("login_btn").style.display = "block";
         document.getElementById("logout_btn").style.display = "none";
         document.getElementById("user_info").innerHTML = "Not Logged In";
+
+        disableButtons();
     }
     else{
         document.getElementById("login_btn").style.display = "none";
         document.getElementById("logout_btn").style.display = "block";
         document.getElementById("user_info").innerHTML = "Loading...";
         getBal(user["addr"])
+    }
+}
+
+function disableButtons(){
+    let btns = document.getElementsByClassName("btn-after-login");
+    for (let i = 0; i < btns.length; i++){
+        btns[i].disabled = true;
     }
 }
 
@@ -241,4 +251,44 @@ function logout(){
     window.localStorage.removeItem("user");
     location.reload();
 }
+
+function getExchangeRate(){
+    doCall("https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD", (res) => {
+        console.log(res);
+        x = document.getElementsByClassName("exchange");
+        for(let i = 0; i < x.length; i++){
+            x[i].innerHTML = `<span><i>1 ETH = USD ${JSON.parse(res)["USD"]}</i></span>`
+        }
+    })
+}
+
+getExchangeRate();
+
+
+// function setCardAmt(){
+//     console.log(document.getElementById("donate_card_val"))
+//     let amt = parseFloat(document.getElementById("donate_card_val").value)*100;
+//     console.log(amt);
+//     console.log(document.getElementById("card_form"))
+//     document.getElementById("card_form").innerHTML = `
+//     <form class="payment-form" method="POST" action="./donate.html">
+//     <script>
+//         window.CKOConfig = {
+//             publicKey: 'pk_test_ace025e7-10de-4ff9-9c7d-7d8fdb54de07',
+//             customerEmail: ${document.getElementById("donate_card_email").value},
+//             value: ${amt},
+//             currency: "USD",
+//             paymentMode: 'cards',
+//             cardFormMode: 'cardTokenisation',
+//             cardTokenised: function(event) {
+//                 console.log(event.data.cardToken);
+//             }
+//         };
+//     </script>
+    
+//     </form>
+//     `
+
+
+// }
 
