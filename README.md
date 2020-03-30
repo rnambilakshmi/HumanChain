@@ -4,8 +4,7 @@
 ***
 
 ### Problem Statement 
-In the current scenario of the world, given the outbreak of COVID-19, people are forced to go into lockdown. In such a scenario, daily life comes to a stop as routines are disturbed. Procuring daily supplies is difficult and home bound patients who need assistance are helpless. People have been asking help through varied platforms and some have also offered help.  
-
+Our world turned upside down with the outbreak. With the ever-growing numbers, essential services have come to a stop, the everyday routine is constricted to with people being forced to go into lockdown. In such a scenario, panic is profound and ubiquitous. Procuring daily supplies is becoming increasingly nightmarish and homebound patients who need assistance are helpless. Though people have been asking help through varied platforms and some have also offered help, there is an absence of a universal stop which serves all needs.
 
 ### Our Solution: HumanChain 
 
