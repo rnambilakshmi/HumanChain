@@ -13,6 +13,21 @@ HumanChain is an interface that bridges the gap and brings together these people
 
 ![github-small](/client/images/launchpage.png) 
 
+### Features
+#### Need Assistance?
+Enter personal details along with the details of the requirement. Assistance is divided into three categories, 
+1. Medical (upload prescription)
+2. Physical Assistance
+3. Daily Essentials (groceries)
+#### Volunteer
+One can enlist to volunteer for those in need. The page showcases details of people who need help and the type of help required.
+#### Donate
+Currently, a monetary donation can be made for two main causes
+1. Welfare aid
+2. Medical aid
+An additional feature is donation in kind, where one can upload supplies the person can donate for those in need. Includes food, groceries & sanitaryware
+#### News 
+This page shows COVID related news from all over the world along with a live counter of the number of people affected by it in a country-wise tally
 
 ## Challenges we ran into
 
