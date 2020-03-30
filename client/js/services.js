@@ -208,6 +208,8 @@ function disableButtons(){
     for (let i = 0; i < btns.length; i++){
         btns[i].disabled = true;
     }
+
+    document.getElementById("service_warn").style.display = "block";
 }
 
 loadUser()

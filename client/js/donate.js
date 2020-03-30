@@ -242,6 +242,9 @@ function disableButtons(){
     for (let i = 0; i < btns.length; i++){
         btns[i].disabled = true;
     }
+    console.log("reached here")
+    document.getElementById("crypto_warn").style.display = "block";
+    document.getElementById("donate_card_warn").style.display = "block";
 }
 
 loadUser()

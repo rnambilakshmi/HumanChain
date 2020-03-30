@@ -316,7 +316,11 @@
                                 <input type="text" placeholder="Amount Donated (in ETH)" id="donate_amt">
                             </div>
 
-                            <input class="btn-after-login btn gradient-bg mt-5" type="button" value="Donate Now" onClick=donate()>
+                            <div id="crypto_warn" class="alert alert-warning" role="alert" style="display: none; margin-top: 20pt" >
+                                Login to donate
+                            </div>
+
+                            <input class="btn-after-login btn gradient-bg" type="button" style="margin-top:10pt" value="Donate Now" onClick=donate()>
                         </div>
                         <div id="donation_crypto_success" class="alert alert-success" role="alert" style="display: none">
                             Donation has been successfully received!
@@ -330,6 +334,9 @@
                                 <input type="email" placeholder="E-mail" id="donate_card_email">
                                 <input type="text" placeholder="Amount (USD)" id="donate_card_val">
                                 
+                            </div>
+                            <div id="donate_card_warn" class="alert alert-warning" role="alert" style="display: none;  margin-top: 20pt">
+                                Login to donate
                             </div>
                             <div id="card_form">
                                 <form class="payment-form" method="POST" action="./donate.html">
