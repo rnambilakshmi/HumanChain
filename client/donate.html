@@ -33,7 +33,7 @@
 
 
 </head>
-<body class="single-page donate-page">
+<body class="single-page donate-page" onload="loadFunc()">
     <header class="site-header">
         <div class="top-header-bar">
             <div class="container">
@@ -93,7 +93,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h1>Donate for a Cause</h1>
+                    <h1>Donation</h1>
                 </div><!-- .col -->
             </div><!-- .row -->
         </div><!-- .container -->
@@ -103,116 +103,139 @@
     <div class="featured-cause">
         <div class="container">
             <div class="row">
-                <div class="col-12">
+                <div class="col-6">    
+                    <h2 style="margin-top:20pt">Donate for a Cause</h2>
+                    <hr>
+                    <div class="row">
+                        <div class="my-custom-scrollbar">
+                            <div class="col-12">
+                                <div class="cause-wrap d-flex flex-wrap justify-content-between" style="padding-bottom: 10pt; margin-top:10pt">
+                                    <figure class="m-0">
+                                        <img  height="300px" width="200px" src="images/welfare.jpg" alt="">
+                                    </figure>
 
-                </div><!-- .col -->
-            </div><!-- .row -->
+                                    <div class="cause-content-wrap">
+                                        <header class="entry-header d-flex flex-wrap align-items-center">
+                                            <h3 id="cause_1_descr" class="entry-title w-100 m-0"><a href="#" style="text-decoration:none">Welfare Aid</a></h3>
 
-            <div class="row">
-                <div class="col-12 col-lg-6">
-                    <div class="cause-wrap d-flex flex-wrap justify-content-between" style="padding-bottom: 10pt">
-                        <figure class="m-0">
-                            <img src="images/welfare.jpg" alt="">
-                        </figure>
+                                            <div class="posted-date">
+                                                <a href="#" style="text-decoration:none">Mar 25</a>
+                                            </div><!-- .posted-date -->
 
-                        <div class="cause-content-wrap">
-                            <header class="entry-header d-flex flex-wrap align-items-center">
-                                <h3 id="cause_1_descr" class="entry-title w-100 m-0"><a href="#" style="text-decoration:none">Welfare Aid</a></h3>
+                                            <div class="cats-links" >
+                                                <div style="display:inline-block;">
+                                                    <a href="#" style="text-decoration:none">Maharashtra Govt.</a>
+                                                </div>
+                                                <div style="display:inline-block;">
+                                                    <a id="creator" href="#" data-toggle="tooltip" title="Ethereum Address: "><i class="fa fa-info-circle"></i></a>
+                                                </div>
+                                                
+                                            </div><!-- .cats-links -->
+                                        </header><!-- .entry-header -->
 
-                                <div class="posted-date">
-                                    <a href="#" style="text-decoration:none">Mar 25</a>
-                                </div><!-- .posted-date -->
+                                        <div class="entry-content">
+                                            <p class="m-0">When you donate to this fund, you help underprivileged communities get access to essential sanitary equipment</p>
+                                        </div><!-- .entry-content -->
 
-                                <div class="cats-links" >
-                                    <div style="display:inline-block;">
-                                        <a href="#" style="text-decoration:none">Maharashtra Govt.</a>
-                                    </div>
-                                    <div style="display:inline-block;">
-                                        <a id="creator" href="#" data-toggle="tooltip" title="Ethereum Address: "><i class="fa fa-info-circle"></i></a>
-                                    </div>
-                                     
-                                </div><!-- .cats-links -->
-                            </header><!-- .entry-header -->
+                                        <div style="text-align:center" class="entry-footer mt-5">
+                                            <a href="#donation-form" class="btn gradient-bg mr-2" onClick="setDonationDetails()">Donate Now</a>
+                                        </div><!-- .entry-footer -->
+                                    </div><!-- .cause-content-wrap -->
 
-                            <div class="entry-content">
-                                <p class="m-0">When you donate to this fund, you help underprivileged communities get access to essential sanitary equipment</p>
-                            </div><!-- .entry-content -->
+                                    <div id = "fund_raised_details" class="fund-raised w-100" style="margin-top:10pt" >
+                                        <!--<div class="featured-fund-raised-bar barfiller">
+                                            <div class="tipWrap">
+                                                <span class="tip"></span>
+                                            </div>
 
-                            <div class="entry-footer mt-5">
-                                <a href="#donation-form" class="btn gradient-bg mr-2" onClick="setDonationDetails()">Donate Now</a>
-                            </div><!-- .entry-footer -->
-                        </div><!-- .cause-content-wrap -->
+                                            <span  class="fill" data-percentage="24"></span>
+                                        </div>
 
-                        <div id = "fund_raised_details" class="fund-raised w-100" style="margin-top:10pt" >
-                            <!--<div class="featured-fund-raised-bar barfiller">
-                                <div class="tipWrap">
-                                    <span class="tip"></span>
-                                </div>
+                                        <div class="fund-raised-details d-flex flex-wrap justify-content-between align-items-center">
+                                            <div class="fund-raised-total mt-4">
+                                                Raised: 2.4 ETH
+                                            </div>
 
-                                <span  class="fill" data-percentage="24"></span>
-                            </div>
+                                            <div class="fund-raised-goal mt-4">
+                                                Requirement: 10 ETH 
+                                            </div>
+                                        </div>
+                                        <div class="fund-raised-details" style="text-align:center">   
+                                            <span><i>1 ETH ~ INR 10,000</i></span>
+                                        </div>-->
+                                    </div><!-- .fund-raised -->
+                                </div><!-- .cause-wrap -->
+                            </div><!-- .col -->
 
-                            <div class="fund-raised-details d-flex flex-wrap justify-content-between align-items-center">
-                                <div class="fund-raised-total mt-4">
-                                    Raised: 2.4 ETH
-                                </div>
+                            <div class="col-12">
+                                <div class="cause-wrap d-flex flex-wrap justify-content-between" style="padding-bottom: 10pt">
+                                    <figure class="m-0">
+                                        <img height="300px" width="200px" src="images/medical.jpg" alt="">
+                                    </figure>
 
-                                <div class="fund-raised-goal mt-4">
-                                    Requirement: 10 ETH 
-                                </div>
-                            </div>
-                            <div class="fund-raised-details" style="text-align:center">   
-                                <span><i>1 ETH ~ INR 10,000</i></span>
-                            </div>-->
-                        </div><!-- .fund-raised -->
-                    </div><!-- .cause-wrap -->
-                </div><!-- .col -->
+                                    <div class="cause-content-wrap">
+                                        <header class="entry-header d-flex flex-wrap align-items-center">
+                                            <h3 class="entry-title w-100 m-0"><a href="#" style="text-decoration:none">Medical Aid</a></h3>
 
-                <div class="col-6 col-lg-6">
-                    <div class="cause-wrap d-flex flex-wrap justify-content-between" style="padding-bottom: 10pt">
-                        <figure class="m-0">
-                            <img src="images/medical.jpg" alt="">
-                        </figure>
+                                            <div class="posted-date">
+                                                <a href="#" style="text-decoration:none">Mar 22</a>
+                                            </div><!-- .posted-date -->
 
-                        <div class="cause-content-wrap">
-                            <header class="entry-header d-flex flex-wrap align-items-center">
-                                <h3 class="entry-title w-100 m-0"><a href="#" style="text-decoration:none">Medical Aid</a></h3>
+                                            <div class="cats-links">
+                                                <a href="#" style="text-decoration:none">Govt. of India</a>
+                                            </div><!-- .cats-links -->
+                                        </header><!-- .entry-header -->
 
-                                <div class="posted-date">
-                                    <a href="#" style="text-decoration:none">Mar 22</a>
-                                </div><!-- .posted-date -->
+                                        <div class="entry-content">
+                                            <p class="m-0">Every rupee you donate helps in providing medical aid to people affected by the pandemic</p>
+                                        </div><!-- .entry-content -->
 
-                                <div class="cats-links">
-                                    <a href="#" style="text-decoration:none">Govt. of India</a>
-                                </div><!-- .cats-links -->
-                            </header><!-- .entry-header -->
+                                        <div style="text-align:center" class="entry-footer mt-5">
+                                            <a href="#" class="btn gradient-bg mr-2">Donate Now</a>
+                                        </div><!-- .entry-footer -->
+                                    </div><!-- .cause-content-wrap -->
+                                    
+                                    <div class="fund-raised w-100" style="margin-top:10pt">
+                                        <div class="fund-raised-details d-flex flex-wrap justify-content-between align-items-center">
+                                            <div class="fund-raised-total mt-4">
+                                                <b>Raised:</b> 12.5 ETH
+                                            </div><!-- .fund-raised-total -->
 
-                            <div class="entry-content">
-                                <p class="m-0">Every rupee you donate helps in providing medical aid to people affected by the pandemic</p>
-                            </div><!-- .entry-content -->
+                                            <div class="fund-raised-goal mt-4">
+                                                <b>Requirement:</b> 25 ETH
+                                            </div><!-- .fund-raised-goal -->
+                                        </div><!-- .fund-raised-details -->
+                                        <div class="fund-raised-details exchange" style="text-align:center">   
+                                            <span><i>Fetching latest exchange rates...</i></span>
+                                        </div>
+                                    </div><!-- .fund-raised -->
+                                </div><!-- .cause-wrap -->
+                            </div><!-- .col -->
+                        </div>
+                    </div><!-- .row -->
+                </div>
 
-                            <div class="entry-footer mt-5">
-                                <a href="#" class="btn gradient-bg mr-2">Donate Now</a>
-                            </div><!-- .entry-footer -->
-                        </div><!-- .cause-content-wrap -->
-                        
-                        <div class="fund-raised w-100" style="margin-top:10pt">
-                            <div class="fund-raised-details d-flex flex-wrap justify-content-between align-items-center">
-                                <div class="fund-raised-total mt-4">
-                                    <b>Raised:</b> 12.5 ETH
-                                </div><!-- .fund-raised-total -->
-
-                                <div class="fund-raised-goal mt-4">
-                                    <b>Requirement:</b> 25 ETH
-                                </div><!-- .fund-raised-goal -->
-                            </div><!-- .fund-raised-details -->
-                            <div class="fund-raised-details exchange" style="text-align:center">   
-                                <span><i>Fetching latest exchange rates...</i></span>
-                            </div>
-                        </div><!-- .fund-raised -->
-                    </div><!-- .cause-wrap -->
-                </div><!-- .col -->
-            </div><!-- .row -->
+                <div class="col-12 col-lg-6 col-md-6">
+                    <h2 style="margin-top:20pt">List of Donations</h2>
+                    <hr>
+                    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                        <table class="table table-hover table-bordered" id="donations_table">
+                            <thead class="thead-dark">
+                                <tr>
+                                <th scope="col">Type</th>
+                                <th scope="col">Particulars</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Location</th>
+                                <!--<th scope="col">Donor</th>-->
+                                </tr>
+                            </thead>
+                            <tbody id="donations_table_body">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div><!-- .container -->
     </div><!-- .featured-cause -->
 
@@ -300,6 +323,8 @@
                                 Login to donate
                             </div>
 
+                            
+
                             <input class="btn-after-login btn gradient-bg" type="button" style="margin-top:20pt" value="Donate Now" onClick=donate()>
                         </div>
                         <div id="donation_crypto_success" class="alert alert-success" role="alert" style="display: none; margin-top: 20pt">
@@ -364,9 +389,9 @@
                             <h4 class="w-100 mt-5 mb-1">Donation Details</h4>
                             <select class="form-control donation_type" id="kind_donate_type">
                                 <option selected disabled>Type of Donation:</option>
-                                <option value="groceries">Groceries</option>
-                                <option value="sanitation">Sanitation Products</option>
-                                <option value="other">Others</option>
+                                <option value="Groceries">Groceries</option>
+                                <option value="Sanitation">Sanitation Products</option>
+                                <option value="Other">Others</option>
                             </select>
                             
                             <br />
@@ -377,6 +402,9 @@
                         </div>
                         <div id="kind_warn" class="alert alert-warning" role="alert" style="display: none; margin-top: 20pt" >
                             Login to donate
+                        </div>
+                        <div id="kind_err" class="alert alert-danger" role="alert" style="display: none; margin-top: 20pt">
+                            Some error
                         </div>
                         <input class="btn-after-login btn gradient-bg" type="button" style="margin-top:10pt" value="Donate Now" onClick=donateInKind()>
 

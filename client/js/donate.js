@@ -116,8 +116,8 @@ function retrieveCauses(){
     database.on('value', function(snapshot){
         snapshot.forEach(snap => {
             console.log(snap.val())
-            // console.log(`${service_type}_table_body`)
-            // document.getElementById(`${service_type}_table_body`).innerHTML += 
+            // console.log(`${type}_table_body`)
+            // document.getElementById(`${type}_table_body`).innerHTML += 
             //     `<tr class="clickable-row" value=${snap.key}>
             //     <th scope="row">${snap.key}</th>
             //     <td>${snap.val()["name"]}</td>
@@ -159,7 +159,6 @@ function retrieveCauses(){
     })
 }
 
-retrieveCauses()
 
 // function getUserDetails(addr, bal){
 //     let database = firebase.database().ref('users');
@@ -250,8 +249,6 @@ function disableButtons(){
     document.getElementById("kind_warn").style.display = "block";
 }
 
-loadUser()
-
 function logout(){
     console.log("Logout");
     window.localStorage.removeItem("user");
@@ -267,8 +264,6 @@ function getExchangeRate(){
         }
     })
 }
-
-getExchangeRate();
 
 function showInCashForm(){
     console.log("cash");
@@ -296,10 +291,60 @@ function showInKindForm(){
 function donateInKind(){
     name = document.getElementById("kind_donate_name").value;
     email = document.getElementById("kind_donate_email").value;
-    location = document.getElementById("kind_donate_loc").value;
-    type = document.getElementById("kind_donate_name").value;
+    loc = document.getElementById("kind_donate_loc").value;
+    type = document.getElementById("kind_donate_type").value;
     particular = document.getElementById("kind_donate_particular").value;
     qty = document.getElementById("kind_donate_qty").value;
 
+    if(name == "" || email == "" || loc == "" || type == "Type of Donation:" || particular == "" || qty == ""){
+        document.getElementById("kind_err").innerHTML = "Field can't remain empty";
+        document.getElementById("kind_err").style.display = "block";
+        return;
+    }
 
+    firebase.database().ref(`donations/${type}`).push({
+        name: name,
+        email: email,
+        location: loc,
+        particular: particular,
+        qty: qty
+    });
+    document.getElementById("donation_kind_success").style.display = "block";
+}
+
+function retrieveDonations(){
+    let types = ["Groceries", "Sanitation", "Others"];
+    for(i =0; i < types.length; i++){
+        console.log(i);
+        let type = types[i];
+        let database = firebase.database().ref('donations/' + type);
+
+        database.on('value', function(snapshot){
+            snapshot.forEach(snap => {
+                console.log(snap.val())
+                document.getElementById(`donations_table_body`).innerHTML += 
+                    `<tr value=${snap.key}>
+                        <td>${type}</th>
+                        <td>${snap.val()["particular"]}</td>
+                        <td>${snap.val()["qty"]}</td>
+                        <td>${snap.val()["location"]}</td>
+                    </tr>
+                    `
+                requests[snap.key] = {
+                    "name": snap.val()["name"],
+                    "addr": snap.val()["res_addr"],
+                    "descr": snap.val()["descr"],
+                    "status": snap.val()["status"],
+                    "type": type
+                }
+            })
+        })
+    }
+}
+
+function loadFunc(){
+    loadUser();
+    getExchangeRate();
+    retrieveDonations();
+    retrieveCauses();
 }

@@ -59,27 +59,6 @@ function getBal(addr){
     
 }
 
-// function getBal(addr){
-    
-//     doCall(`${url}/ethBalance?address=${addr}`, (res) => {
-//         // Change necessary values
-//         console.log("Balance:", res);
-//         getUserDetails(addr, res)
-//     })
-// }
-
-// function getAddr(){
-//     doCall(`${url}/address?address=donate`, (res) => {
-//         // Change necessary values
-//         console.log(res)
-
-//         getUserDetails(res)
-
-//         getBal(res)
-//     })
-// }
-
-// getAddr()
 
 function retrieveAidsNeeded(){
     let service_types = ["medicines", "daily_essentials", "physical_assistance"];
@@ -87,10 +66,12 @@ function retrieveAidsNeeded(){
     for(i =0; i < service_types.length; i++){
         console.log(i);
         let service_type = service_types[i];
+        
         let database = firebase.database().ref('services/' + service_type);
         if(service_type != "medicines"){
             console.log("medicine")
             database.on('value', function(snapshot){
+                document.getElementById(`${service_type}_table_body`).innerHTML = "";
                 snapshot.forEach(snap => {
                     console.log(snap.val())
                     console.log(`${service_type}_table_body`)
@@ -116,6 +97,7 @@ function retrieveAidsNeeded(){
         else{
             console.log("other");
             database.on('value', function(snapshot){
+                document.getElementById(`${service_type}_table_body`).innerHTML = "";
                 snapshot.forEach(snap => {
                     console.log(snap.val())
                     console.log(`${service_type}_table_body`)
@@ -138,33 +120,9 @@ function retrieveAidsNeeded(){
                 })
             })
         }
-        // database.on('value', function(snapshot){
-        //     snapshot.forEach(snap => {
-        //         console.log(snap.val())
-        //         console.log(`${service_type}_table_body`)
-        //         document.getElementById(`${service_type}_table_body`).innerHTML += 
-        //             `<tr class="clickable-row" value=${snap.key}>
-        //             <th scope="row">${snap.key}</th>
-        //             <td>${snap.val()["name"]}</td>
-        //             <td>${snap.val()["res_addr"]}</td>
-        //             <td>${snap.val()["descr"]}</td>
-        //             <td>${snap.val()["status"]}</td>
-        //             </tr>
-        //             `
-        //         requests[snap.key] = {
-        //             "name": snap.val()["name"],
-        //             "addr": snap.val()["res_addr"],
-        //             "descr": snap.val()["descr"],
-        //             "status": snap.val()["status"],
-        //             "type": service_type
-        //         }
-        //     })
-        // })
     }
     
 }
-
-retrieveAidsNeeded()
 
 function matchAidWithVolunteer(){
     document.getElementById("service_err").style.display = "none";
@@ -250,10 +208,16 @@ function disableButtons(){
     document.getElementById("service_warn").style.display = "block";
 }
 
-loadUser()
-
 function logout(){
     console.log("Logout");
     window.localStorage.removeItem("user");
     location.reload();
+}
+
+
+
+function loadFunc(){
+    loadUser();
+    retrieveAidsNeeded();
+
 }
