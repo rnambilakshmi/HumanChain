@@ -18,7 +18,7 @@ HumanChain is an interface that bridges the gap and brings together these people
 Enter personal details along with the details of the requirement. Assistance is divided into three categories, 
 1. Medical (upload prescription)
 2. Physical Assistance
-3. Daily Essentials (groceries)
+3. Daily Essentials (groceries, milk etc..)
 #### Volunteer
 One can enlist to volunteer for those in need. The page showcases details of people who need help and the type of help required.
 #### Donate
