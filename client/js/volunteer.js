@@ -145,12 +145,21 @@ function matchAidWithVolunteer(){
         database.on('value', function(snapshot){
             snapshot.forEach(snap => {
                 if(snap.key == id) {
-                    let db = firebase.database().ref('services/' + service_type + "/" + snap.key);
-                    db.update({
-                        status: "Volunteer: " + volunteer
-                    })
+                    if(snap.val()["status"] == "Help Needed"){
+                        let db = firebase.database().ref('services/' + service_type + "/" + snap.key);
+                        db.update({
+                            status: "Volunteer: " + volunteer
+                        })
+                        notifyByEmail();
+                    }
+                    else{
+                        document.getElementById("service_err").innerHTML = "Sorry! This request had already been matched.";
+                        document.getElementById("service_err").style.display = "block"
+                        return; 
+                    }
                 }
             })
+
         })
         
     }
@@ -219,5 +228,8 @@ function logout(){
 function loadFunc(){
     loadUser();
     retrieveAidsNeeded();
+}
 
+function notifyByEmail() {
+    // Todo
 }

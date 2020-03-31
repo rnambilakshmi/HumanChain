@@ -3,6 +3,7 @@ var bodyParser = require("body-parser");
 
 const web3_utils = require('./web3/utils');
 const web3_humanChain = require("./web3/humanChain");
+const email_utils = require("./utils/email");
 
 const app = express()
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -59,6 +60,13 @@ app.get('/tip', (req, res) => {
 app.get('/getCauseDetails', (req, res) => {
     web3_humanChain.getCauseDetails(req.query.address, req.query.volunteer, req.query.amt, (details) => {
         res.send(details);
+    })
+})
+
+app.post('/sendMail', (req, res) => {
+    email_utils.sendEmail(req.body.address, req.body.email_body, (err, info) => {
+        console.log(err, info);
+        res.send({"err":err, "info":info});
     })
 })
 
