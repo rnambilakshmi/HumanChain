@@ -31,6 +31,20 @@ function doCall(url, callback){
     xmlHttp.send(null);
 }
 
+function doPost(url, body, callback){
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(xmlHttp.responseText);
+    }
+    xmlHttp.open("POST", url, true); // true for asynchronous 
+    xmlHttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    // xmlHttp.setRequestHeader('Access-Control-Allow-Headers', '*');
+    // xmlHttp.setRequestHeader('Access-Control-Allow-Origin', '*');
+    // xmlHttp.setRequestHeader('Access-Control-Allow-Methods', 'POST');
+    xmlHttp.send(body);
+}
+
 function getBal(addr){
     if(addr == null){
         console.log("No address!")
@@ -127,6 +141,7 @@ function retrieveAidsNeeded(){
 function matchAidWithVolunteer(){
     document.getElementById("service_err").style.display = "none";
     document.getElementById("service_success").style.display = "none";
+    document.getElementById("volunteer_spin").style.display = "block";
     
     let id = document.getElementById("volunteer_id").value;
     let service_type;
@@ -135,41 +150,91 @@ function matchAidWithVolunteer(){
     }
     catch {
         document.getElementById("service_err").innerHTML = "Invalid ID";
-        document.getElementById("service_err").style.display = "block"
-        return
+        document.getElementById("service_err").style.display = "block";
+        document.getElementById("volunteer_spin").style.display = "none";
+        return;
     }
-    
+    let aid;
+    let found = false;
     let volunteer = user["name"];
     try{
         let database = firebase.database().ref('services/' + service_type);
-        database.on('value', function(snapshot){
+        database.once('value', function(snapshot){
+            console.log(snapshot);
             snapshot.forEach(snap => {
                 if(snap.key == id) {
-                    if(snap.val()["status"] == "Help Needed"){
-                        let db = firebase.database().ref('services/' + service_type + "/" + snap.key);
-                        db.update({
-                            status: "Volunteer: " + volunteer
-                        })
-                        notifyByEmail();
+                    found = true;
+                    if(snap.val()["status"] != "Help Needed"){
+                        aid = null;
+                        document.getElementById("volunteer_spin").style.display = "none";
+                        document.getElementById("service_err").innerHTML = "Sorry! This request had already been matched.";
+                        document.getElementById("service_err").style.display = "block";
+                        return true; 
+                    
                     }
                     else{
-                        document.getElementById("service_err").innerHTML = "Sorry! This request had already been matched.";
-                        document.getElementById("service_err").style.display = "block"
-                        return; 
+                        aid = snap.val();
                     }
+
                 }
             })
 
+            if(found == true){
+                if(aid != null){
+                    let email_body = 
+                    `
+                    Hi ${aid["name"]}, 
+                    <br /><br />
+                    Your request for '<b><i>${aid["descr"]}</i></b>' has been matched to a volunteer.
+                    <br /><br />
+                    Following are the details of the volunteer:
+                    <br />
+                    <b>Name: </b>${user["name"]}
+                    <br />
+                    <b>Email ID: </b>${user["email"]}
+                    <br /><br />
+                    Regards,
+                    <br />
+                    <b><i>HumanChain Team</i></b>
+                    `
+
+                    notifyByEmail(aid["email"], email_body, (resp) => {
+                        console.log(resp)
+                        if(resp["err"] == null){
+                            let db = firebase.database().ref('services/' + service_type + "/" + id);
+                            db.update({
+                                status: "Volunteer: " + volunteer
+                            })
+                            document.getElementById("volunteer_spin").style.display = "none";
+                            document.getElementById("service_success").innerHTML = "You have been successfully matched to " + aid["name"];
+                            document.getElementById("service_success").style.display = "block";
+                            return ;
+                        }
+                        else{
+                            document.getElementById("volunteer_spin").style.display = "none";
+                            document.getElementById("service_err").innerHTML = "Sorry! Could not process your request. Please try again.";
+                            document.getElementById("service_err").style.display = "block";
+                        }
+                        
+                    });
+                }
+            }
+            else{
+                document.getElementById("volunteer_spin").style.display = "none";
+                document.getElementById("service_err").innerHTML = "Sorry! Request not found.";
+                document.getElementById("service_err").style.display = "block";
+            }
+
+            
         })
         
     }
     catch{
+        document.getElementById("volunteer_spin").style.display = "none";
         document.getElementById("service_err").innerHTML = "Sorry! Could not process your request";
         document.getElementById("service_err").style.display = "block"
         return;
     }
-    document.getElementById("service_success").innerHTML = "You have been successfully matched to " + requests[id]["name"];
-    document.getElementById("service_success").style.display = "block";
     
 }
 
@@ -230,6 +295,15 @@ function loadFunc(){
     retrieveAidsNeeded();
 }
 
-function notifyByEmail() {
+function notifyByEmail(email_id, email_body, callback) {
     // Todo
+    let body = JSON.stringify({
+        email_id: email_id,
+        email_body: email_body
+    })
+
+    doPost(`${url}/sendMail`, body, (res) => {
+        console.log(res)
+        callback(JSON.parse(res))
+    })
 }

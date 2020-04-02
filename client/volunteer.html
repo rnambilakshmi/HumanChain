@@ -11,7 +11,8 @@
     
     <link rel="shortcut icon" href="./images/help_logo.png">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!-- FontAwesome CSS -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -176,6 +177,13 @@
                         <span>
                             <input class="btn-after-login btn gradient-bg" type="button" value="Volunteer" onClick="matchAidWithVolunteer()">
                         </span>
+
+                        <div id="volunteer_spin" style="display: none; text-align:center; margin-top: 20pt">
+                            <div class="spinner-border" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </div>  
+
                         <div id="service_success" class="alert alert-success" role="alert" style="display: none; margin-top: 10pt">
                             Your request for assistance has been successfully recorded!
                         </div>

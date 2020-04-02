@@ -11,7 +11,8 @@ app.use(bodyParser.json());
 
 app.all('/*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
+    res.header("Access-Control-Allow-Method", "GET, POST");
     next();
 });
 
@@ -64,7 +65,7 @@ app.get('/getCauseDetails', (req, res) => {
 })
 
 app.post('/sendMail', (req, res) => {
-    email_utils.sendEmail(req.body.address, req.body.email_body, (err, info) => {
+    email_utils.sendEmail(req.body.email_id, req.body.email_body, (err, info) => {
         console.log(err, info);
         res.send({"err":err, "info":info});
     })

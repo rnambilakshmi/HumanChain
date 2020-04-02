@@ -126,19 +126,21 @@ function newAidNeeded(){
     document.getElementById("service_err").style.display = "none";
 
     let name = document.getElementById("service_name").value;
+    let email = document.getElementById("service_email").value;
     let res_addr = document.getElementById("service_addr").value;
     let descr = document.getElementById("service_descr").value;
 
     let service_type = document.getElementById("service_type").value;
-    if(name == "" || res_addr == "" || descr == "" || service_type == "Type of Service:"){
+    if(name == "" || email == "" || res_addr == "" || descr == "" || service_type == "Type of Service:"){
         document.getElementById("service_err").innerHTML = "Field can't remain empty";
         document.getElementById("service_err").style.display = "block";
         return;
     }
-    console.log(name, res_addr, descr, service_type);
+    console.log(name, email, res_addr, descr, service_type);
     if(service_type != "medicines"){
         firebase.database().ref(`services/${service_type}`).push({
             name: name,
+            email: email,
             res_addr: res_addr,
             descr: descr,
             status: "Help Needed",
@@ -149,6 +151,7 @@ function newAidNeeded(){
         prescription_hash = document.getElementById("ipfs_hash").value;
         firebase.database().ref(`services/${service_type}`).push({
             name: name,
+            email: email,
             res_addr: res_addr,
             descr: descr,
             status: "Help Needed",
@@ -156,9 +159,6 @@ function newAidNeeded(){
         });
         document.getElementById("service_success").style.display = "block";
     }
-    
-
-    // alert("Request for Assistance has been recorded")
 }
 
 
