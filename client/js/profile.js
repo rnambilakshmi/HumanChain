@@ -74,12 +74,14 @@ function loadUser(){
     if(user == null){
         document.getElementById("login_btn").style.display = "block";
         document.getElementById("logout_btn").style.display = "none";
+        document.getElementById("profile_btn").style.display = "none";
         document.getElementById("user_info").innerHTML = "Not Logged In";
         document.getElementById("not-logged-in").style.display = "block";
     }
     else{
         document.getElementById("login_btn").style.display = "none";
         document.getElementById("logout_btn").style.display = "block";
+        document.getElementById("profile_btn").style.display = "block";
         document.getElementById("not-logged-in").style.display = "none";
         document.getElementById("user_info").innerHTML = "Loading...";
 
