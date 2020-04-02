@@ -97,9 +97,10 @@ function reg(){
     let email = document.getElementById("reg_email").value;
     let psswd = document.getElementById("reg_psswd").value;
     let psswd_repeat = document.getElementById("reg_psswd_repeat").value;
+    let contact = document.getElementById("reg_contact").value;
     let addr = document.getElementById("reg_eth_addr").value;
 
-    if(name == "" || email == "" || psswd == "" || psswd_repeat == ""){
+    if(name == "" || email == "" || contact == "" || psswd == "" || psswd_repeat == ""){
         console.log("err1")
         document.getElementById("reg_spin").style.display = "none";
         document.getElementById("reg_err").innerHTML = "Field(s) can't remain empty";
@@ -136,6 +137,7 @@ function reg(){
             name: name,
             email: email,
             psswd: psswd,
+            contact: contact
         }
 
         if(addr != ""){

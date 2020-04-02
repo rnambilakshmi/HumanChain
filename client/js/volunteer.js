@@ -191,6 +191,8 @@ function matchAidWithVolunteer(){
                     <br />
                     <b>Name: </b>${user["name"]}
                     <br />
+                    <b>Contact Number: </b>${user["contact"]}
+                    <br />
                     <b>Email ID: </b>${user["email"]}
                     <br /><br />
                     Regards,

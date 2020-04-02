@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>HumanChain</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link rel="shortcut icon" href="./images/help_logo.png">
+    <!-- Bootstrap CSS -->
+    <!--<link rel="stylesheet" href="css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <!-- ElegantFonts CSS -->
+    <link rel="stylesheet" href="css/elegant-fonts.css">
+
+    <!-- themify-icons CSS -->
+    <link rel="stylesheet" href="css/themify-icons.css">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="css/swiper.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+
+
+</head>
+<body class="single-page profile-page" onload="loadFunc()">
+    <header class="site-header">
+        <div class="top-header-bar">
+            <div class="container">
+                <div class="row flex-wrap justify-content-center justify-content-lg-between align-items-lg-center">
+                    <div id="user_info" class="col-12 col-lg-8 d-none d-md-flex flex-wrap justify-content-center justify-content-lg-start mb-3 mb-lg-0">
+                        Loading Details...
+                    </div><!-- .col -->
+
+                    <div class="col-12 col-lg-4 d-flex flex-wrap justify-content-center justify-content-lg-end align-items-center">
+                        <div id="login_btn" class="donate-btn" style="display: none;">
+                            <a href="./login_reg.html">Login / Register</a>
+                        </div>
+                        <div id="logout_btn" class="donate-btn" style="display: block;">
+                            <a href="./index.html" onClick="logout()">Logout</a>
+                        </div>
+                    </div>
+                </div><!-- .row -->
+            </div><!-- .container -->
+        </div><!-- .top-header-bar -->
+
+        <div class="nav-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 d-flex flex-wrap justify-content-between align-items-center">
+                        <a class="d-block" href="index.html" rel="home" style="text-decoration: none;">
+                            <div style="display:inline-block;vertical-align:top;">
+                                <img src="./images/help_logo.png" alt="img"/>
+                            </div>
+                            <div style="display:inline-block;">
+                                <h3>HumanChain</h3>
+                            </div>
+                        </a>
+                        <nav id="nav_bar"  class="site-navigation d-flex justify-content-end align-items-center">
+                            <ul  class="d-flex flex-column flex-lg-row justify-content-lg-end align-content-center">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="services.html">Need Assistance?</a></li>
+                                <li><a href="volunteer.html">Volunteer</a></li>
+                                <li><a href="donate.html">Donate</a></li>
+                                <li><a href="news.html">News</a></li>
+                                <li class="current-menu-item"><a href="profile.html">Profile</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </nav><!-- .site-navigation -->
+
+                        <div class="hamburger-menu d-lg-none">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div><!-- .hamburger-menu -->
+                    </div><!-- .col -->
+                </div><!-- .row -->
+            </div><!-- .container -->
+        </div><!-- .nav-bar -->
+    </header><!-- .site-header -->
+
+    <div class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1>Profile</h1>
+                </div><!-- .col -->
+            </div><!-- .row -->
+        </div><!-- .container -->
+    </div><!-- .page-header -->
+
+    <div id="not-logged-in" style="display: none">
+        <div class="contact-page-wrap" style="margin-top: 20pt">
+            <div class="container">
+                <div id="not_logged_in_warn" class="alert alert-warning" role="alert">
+                    Please log in to view your profile.
+                </div>
+                <span>
+                    <a href="./login_reg.html"><input class="btn gradient-bg" type="button" value="Log In"></a>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="logged-in" style="display: block">
+        <div class="user-page-wrap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h4 style="margin-top:20pt">Personal Details</h4>
+                        <hr>
+
+                        <form class="profile-form">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Email ID</span>
+                                        </div>
+                                        <input id="email" type="email" style="width:75%" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Password</span>
+                                        </div>
+                                        <input id="psswd" type="password" style="width:65%"readonly>
+                                        <div class="input-group-append">
+                                            <span id="toggle-psswd" class="input-group-text" style="width:40px" onClick="togglePsswdView()"><i class="fa fa-eye"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Name</span>
+                                        </div>
+                                        <input id="name" type="text" style="width:79%" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Contact</span>
+                                        </div>
+                                        <input id="contact" type="text" style="width:75%" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Ethereum Address</span>
+                                        </div>
+                                        <input id="addr" type="text" style="width:80%" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                            <!--<span id="toggle-psswd" class="input-group-text" style="width:40px" onClick="togglePsswdView()"><i class="fa fa-eye"></i></span>-->
+                                    <button id="eth_addr_button" style="margin-bottom:20pt" class="btn gradient-bg" type="button" onClick="showUpdate()"></button>
+                                    <div id="new_addr_div" style="display: none">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">New Ethereum Address</span>
+                                            </div>
+                                            <input id="new_addr" type="text" style="width:68%; cursor:text">
+                                            <div class="input-group-append">
+                                                <span id="update_addr" class="input-group-text" style="cursor: pointer" onClick="updateEthAddr()">Update</span>
+                                            </div>
+                                        </div>
+                                        <div id="update_spin" style="display: none; text-align:center">
+                                            <div class="spinner-border" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </div> 
+                                        <div id="update_err" class="alert alert-danger" role="alert" style="display: none">
+                                            Some error
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <!--Table for assistance asked-->
+                        <h4 style="margin-top:20pt">Assistance Requested</h4>
+                        <hr>
+                        <div class="container table-container" style="margin-top:20pt; margin-bottom:20pt">
+                            <table class="table table-hover table-bordered" id="assistance_table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                    <th scope="col">Request ID</th>
+                                    <th scope="col">Residential Address</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Status</th>
+                                    </tr>
+                                    <tr id="no_assistance_found">
+                                    <td colspan="5" style="text-align:center">No Details to Display</td>
+                                    </tr>
+                                </thead>
+                                <tbody id="assistance_table_body">
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <!--Table for assistance asked-->
+                        <h4 style="margin-top:20pt">Volunteer For</h4>
+                        <hr>
+                        <div class="container table-container" style="margin-top:20pt; ; margin-bottom:30pt">
+                            <table class="table table-hover table-bordered" id="volunteer_table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                    <th scope="col">Request ID</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Residential Address</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Description</th>
+                                    </tr>
+                                    <tr id="no_volunteer_found">
+                                    <td colspan="5" style="text-align:center">No Details to Display</td>
+                                    </tr>
+                                </thead>
+                                <tbody id="volunteer_table_body">
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+    <footer class="site-footer">
+        <div class="footer-widgets">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="foot-about">
+                            <h2><a class="foot-logo" href="#"><b style="color:white">HumanChain</b></a></h2>
+
+                            <p>HumanChain is an initiative of bringing together people to lend a helping hand to help fight against this pandemic. Help can be extended as assistance to the house bound elderly or monetarily. Extending help would ensure we combat this in the best way possible.</p>
+
+                            <ul class="d-flex flex-wrap align-items-center">
+
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+
+                            </ul>
+                        </div><!-- .foot-about -->
+                    </div><!-- .col -->
+
+                    <div class="col-12 col-md-6 col-lg-4 mt-5 mt-md-0">
+                        <h2><b>Useful Links</b></h2>
+
+                        <ul>
+                            <li><a href="services.html">Need Assistance</a></li>
+                            <li><a href="volunteer.html">Become a Volunteer</a></li>
+                            <li><a href="donate.html">Donate</a></li>
+                        </ul>
+                    </div><!-- .col -->
+
+
+                    <div class="col-12 col-md-6 col-lg-4 mt-5 mt-md-0">
+                        <div class="foot-contact">
+                            <h2><b>Contact</b></h2>
+
+                            <ul>
+                                <li><i class="fa fa-phone"></i><span>+91 11111 11111 / +91 22222 22222</span></li>
+                                <li><i class="fa fa-envelope"></i><span>contact@humanchain.com</span></li>
+                                <li><i class="fa fa-map-marker"></i><span>ABC Bldg, Sector X, PQRS, Mumbai, India</span></li>
+                            </ul>
+                        </div><!-- .foot-contact -->
+
+                        <div class="subscribe-form">
+                            <form class="d-flex flex-wrap align-items-center">
+                                <input type="email" placeholder="Your email">
+                                <input type="submit" value="send">
+                            </form><!-- .flex -->
+                        </div><!-- .search-widget -->
+                    </div><!-- .col -->
+                </div><!-- .row -->
+            </div><!-- .container -->
+        </div><!-- .footer-widgets -->
+
+        <div class="footer-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <p class="m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Created with <i class="fa fa-heart-o" aria-hidden="true"></i> by Tezan & Nambilakshmi
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                    </div><!-- .col-12 -->
+                </div><!-- .row -->
+            </div><!-- .container -->
+        </div><!-- .footer-bar -->
+    </footer><!-- .site-footer -->
+    
+    <script type='text/javascript' src='js/profile.js'></script>
+    <!--<script type='text/javascript' src='js/firebase.js'></script>-->
+    <script type='text/javascript' src='js/jquery.js'></script>
+    <script type='text/javascript' src='js/jquery.collapsible.min.js'></script>
+    <script type='text/javascript' src='js/swiper.min.js'></script>
+    <script type='text/javascript' src='js/jquery.countdown.min.js'></script>
+    <script type='text/javascript' src='js/circle-progress.min.js'></script>
+    <script type='text/javascript' src='js/jquery.countTo.min.js'></script>
+    <script type='text/javascript' src='js/jquery.barfiller.js'></script>
+    <script type='text/javascript' src='js/custom.js'></script>
+</body>
+</html>
