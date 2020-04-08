@@ -12,6 +12,9 @@ HumanChain is an interface that bridges the gap and brings together these people
 
 ## Features
 
+### User Profile
+Once a user registers (or logs in), the profile page shows all his personal details along with the details of all the requests made by him or her & the also all the requests for which he or she has offered to volunteer.
+
 ### Need Assistance?
 Enter personal details along with some details of the requirement. Assistance is offered under three categories, 
 1. Medicines [After uploading prescription to IPFS]
@@ -24,6 +27,8 @@ While requesting for medicines or daily essentials, the person would have to pay
 One can enlist to volunteer for those in need. The page showcases details of people who need help and the type of help required.
 
 For medicines, volunteers could view the prescription uploaded to IPFS for authenticity of the request.
+
+Once a volunteer is matched to a request, the creator of the request is automatically __notified via email__ about the details of the volunteer so that further communication between them can take place.
 
 ### Donate
 The platform allows individuals to offer donations both __in cash and kind__ to combat the pandemic.
