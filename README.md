@@ -40,6 +40,10 @@ The feature of donation in kind allows one can upload supplies the person can do
 ### News 
 This page shows COVID related news from all over the world along with a live counter of the number of people affected by it in a country-wise tally.
 
+## Workflow 
+
+![github-small](/client/images/workflow.jpeg) 
+
 ## Challenges we faced
 
 1. Issues with versions of `web3.js`
